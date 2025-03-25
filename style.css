@@ -14,7 +14,7 @@ body {
 
 /* Header and Nav */
 header {
-    background: #1a365d; /* Darker blue for data science vibe */
+    background: #1a365d;
     color: white;
     padding: 1rem;
     position: sticky;
@@ -47,7 +47,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #63b3ed; /* Light blue hover */
+    color: #63b3ed;
 }
 
 /* Main Content */
@@ -124,7 +124,7 @@ h2 {
 }
 
 .btn-secondary {
-    background: #718096; /* Gray for secondary buttons */
+    background: #718096;
 }
 
 .btn-secondary:hover {
