@@ -12,13 +12,13 @@ html {
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    background-color: #ffffff; /* Pure white */
+    background-color: #ffffff;
     color: #333;
 }
 
 /* Header and Nav */
 header {
-    background: #334155; /* Dark slate */
+    background: #334155;
     color: white;
     padding: 1rem;
     position: sticky;
@@ -41,7 +41,7 @@ nav h1 {
 }
 
 nav h1:hover {
-    color: #4b9085; /* Muted teal */
+    color: #4b9085;
 }
 
 nav ul {
@@ -116,7 +116,7 @@ h2 {
 }
 
 .project-card {
-    background: #f8fafc; /* Light grey for contrast */
+    background: #f8fafc;
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -135,7 +135,7 @@ h2 {
 .btn {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #4b9085; /* Muted teal */
+    background: #4b9085;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -149,7 +149,7 @@ h2 {
 }
 
 .btn-secondary {
-    background: #64748b; /* Slate grey */
+    background: #64748b;
 }
 
 .btn-secondary:hover {
@@ -167,44 +167,81 @@ h2 {
 
 .work-list strong {
     color: #334155;
-    font-size: 1.2rem; /* Bigger titles */
+    font-size: 1.2rem;
     display: block;
-    margin-bottom: 0.2rem;
+    margin: 0;
 }
 
 .work-list span {
     display: block;
     font-size: 0.9rem;
     color: #666;
-    margin-bottom: 0.3rem;
+    margin: 0;
 }
 
 /* Footer */
 footer {
-    text-align: center;
-    padding: 1.5rem;
     background: #334155;
     color: white;
+    padding: 1.5rem;
 }
 
-footer a {
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.footer-about {
+    flex: 1;
+}
+
+.footer-about h3 {
+    font-size: 1.2rem;
     color: #4b9085;
-    margin: 0 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-about p {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+}
+
+.footer-links {
+    flex: 1;
+    text-align: right;
+}
+
+.footer-links h3 {
+    font-size: 1.2rem;
+    color: #4b9085;
+    margin-bottom: 0.5rem;
+}
+
+.footer-links p {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+}
+
+.footer-links ul {
+    list-style: none;
+    margin-top: 0.5rem;
+}
+
+.footer-links ul li {
+    margin-bottom: 0.3rem;
+}
+
+.footer-links a {
+    color: #4b9085;
     text-decoration: none;
     transition: color 0.3s;
 }
 
-footer a:hover {
+.footer-links a:hover {
     color: #3b7269;
-}
-
-footer .about {
-    font-size: 0.9rem;
-    color: #cbd5e1;
-    margin-top: 0.5rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 /* Responsive Design */
@@ -226,5 +263,14 @@ footer .about {
 
     .project-grid {
         grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        text-align: center;
     }
 }
