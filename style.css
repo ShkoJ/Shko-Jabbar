@@ -170,14 +170,14 @@ h2 {
     font-size: 1.3rem;
     font-weight: bold;
     display: block;
-    margin: 0;
+    margin-bottom: 0.2rem;
 }
 
 .work-list span {
     display: block;
     font-size: 0.95rem;
     color: #666;
-    margin: 0;
+    margin-bottom: 0.2rem;
 }
 
 /* Thin Line and CV Button */
@@ -219,7 +219,7 @@ footer {
 
 .footer-links {
     flex: 1;
-    text-align: left; /* Moved to left */
+    text-align: left;
 }
 
 .footer-links h3 {
