@@ -14,7 +14,7 @@ body {
 
 /* Header and Nav */
 header {
-    background: #2c3e50;
+    background: #1a365d; /* Darker blue for data science vibe */
     color: white;
     padding: 1rem;
     position: sticky;
@@ -47,7 +47,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #3498db;
+    color: #63b3ed; /* Light blue hover */
 }
 
 /* Main Content */
@@ -63,9 +63,9 @@ section {
 
 h2 {
     font-size: 2rem;
-    color: #2c3e50;
+    color: #1a365d;
     margin-bottom: 1rem;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px solid #63b3ed;
     display: inline-block;
 }
 
@@ -104,34 +104,62 @@ h2 {
 }
 
 .project-card h3 {
-    color: #2c3e50;
+    color: #1a365d;
     margin-bottom: 0.5rem;
 }
 
 .btn {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #3498db;
+    background: #63b3ed;
     color: white;
     text-decoration: none;
     border-radius: 5px;
     margin-top: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .btn:hover {
-    background: #2980b9;
+    background: #4299e1;
+}
+
+.btn-secondary {
+    background: #718096; /* Gray for secondary buttons */
+}
+
+.btn-secondary:hover {
+    background: #5a6779;
+}
+
+/* Work List */
+.work-list {
+    list-style: none;
+}
+
+.work-list li {
+    margin-bottom: 1rem;
+}
+
+.work-list strong {
+    color: #1a365d;
 }
 
 /* Footer */
 footer {
     text-align: center;
     padding: 1rem;
-    background: #2c3e50;
+    background: #1a365d;
     color: white;
 }
 
 footer a {
-    color: #3498db;
+    color: #63b3ed;
+    margin: 0 0.5rem;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #4299e1;
 }
 
 /* Responsive Design */
