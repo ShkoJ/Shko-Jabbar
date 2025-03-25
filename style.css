@@ -6,19 +6,19 @@
 }
 
 html {
-    scroll-behavior: smooth; /* Smooth scrolling */
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    background-color: #fef9f0; /* Milk color */
+    background-color: #ffffff; /* Pure white */
     color: #333;
 }
 
 /* Header and Nav */
 header {
-    background: #2d6a4f; /* Deep teal */
+    background: #334155; /* Dark slate */
     color: white;
     padding: 1rem;
     position: sticky;
@@ -41,7 +41,7 @@ nav h1 {
 }
 
 nav h1:hover {
-    color: #95d5b2; /* Light teal hover */
+    color: #4b9085; /* Muted teal */
 }
 
 nav ul {
@@ -58,7 +58,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #95d5b2;
+    color: #4b9085;
 }
 
 /* Main Content */
@@ -81,9 +81,9 @@ section {
 
 h2 {
     font-size: 2rem;
-    color: #2d6a4f;
+    color: #334155;
     margin-bottom: 1rem;
-    border-bottom: 2px solid #95d5b2;
+    border-bottom: 2px solid #4b9085;
     display: inline-block;
 }
 
@@ -116,7 +116,7 @@ h2 {
 }
 
 .project-card {
-    background: white;
+    background: #f8fafc; /* Light grey for contrast */
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -128,14 +128,14 @@ h2 {
 }
 
 .project-card h3 {
-    color: #2d6a4f;
+    color: #334155;
     margin-bottom: 0.5rem;
 }
 
 .btn {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #95d5b2; /* Light teal */
+    background: #4b9085; /* Muted teal */
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -145,15 +145,15 @@ h2 {
 }
 
 .btn:hover {
-    background: #74c69d;
+    background: #3b7269;
 }
 
 .btn-secondary {
-    background: #718096; /* Grey */
+    background: #64748b; /* Slate grey */
 }
 
 .btn-secondary:hover {
-    background: #5a6779;
+    background: #475569;
 }
 
 /* Work List */
@@ -166,40 +166,45 @@ h2 {
 }
 
 .work-list strong {
-    color: #2d6a4f;
-    font-size: 1.1rem;
+    color: #334155;
+    font-size: 1.2rem; /* Bigger titles */
+    display: block;
+    margin-bottom: 0.2rem;
 }
 
 .work-list span {
     display: block;
     font-size: 0.9rem;
     color: #666;
-}
-
-/* About Section */
-#about p {
-    max-width: 800px;
-    margin: 0 auto;
-    color: #555;
+    margin-bottom: 0.3rem;
 }
 
 /* Footer */
 footer {
     text-align: center;
-    padding: 1rem;
-    background: #2d6a4f;
+    padding: 1.5rem;
+    background: #334155;
     color: white;
 }
 
 footer a {
-    color: #95d5b2;
+    color: #4b9085;
     margin: 0 0.5rem;
     text-decoration: none;
     transition: color 0.3s;
 }
 
 footer a:hover {
-    color: #74c69d;
+    color: #3b7269;
+}
+
+footer .about {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    margin-top: 0.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Responsive Design */
