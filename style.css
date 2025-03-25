@@ -135,7 +135,7 @@ h2 {
 .btn {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #64748b; /* Slate grey for all buttons */
+    background: #64748b;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -149,7 +149,7 @@ h2 {
 }
 
 .btn-secondary {
-    background: #64748b; /* Same as primary for consistency */
+    background: #64748b;
 }
 
 .btn-secondary:hover {
@@ -162,12 +162,12 @@ h2 {
 }
 
 .work-list li {
-    margin-bottom: 1rem; /* Space between jobs */
+    margin-bottom: 1rem;
 }
 
 .work-list strong {
     color: #334155;
-    font-size: 1.3rem; /* Slightly larger for visibility */
+    font-size: 1.3rem;
     font-weight: bold;
     display: block;
     margin: 0;
@@ -219,7 +219,7 @@ footer {
 
 .footer-links {
     flex: 1;
-    text-align: right;
+    text-align: left; /* Moved to left */
 }
 
 .footer-links h3 {
@@ -231,11 +231,11 @@ footer {
 .footer-links p {
     font-size: 0.9rem;
     color: #cbd5e1;
+    margin-bottom: 0.5rem;
 }
 
 .footer-links ul {
     list-style: none;
-    margin-top: 0.5rem;
 }
 
 .footer-links ul li {
