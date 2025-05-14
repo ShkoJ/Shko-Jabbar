@@ -10,21 +10,28 @@ html {
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    background-color: #ffffff;
+    background-color: #f9fafb;
     color: #333;
+    overflow-x: hidden;
 }
 
 /* Header and Nav */
 header {
-    background: #334155;
+    background: #1e293b;
     color: white;
-    padding: 1rem;
+    padding: 1rem 2rem;
     position: sticky;
     top: 0;
-    z-index: 10;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
 }
 
 nav {
@@ -36,12 +43,12 @@ nav {
 }
 
 nav h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     transition: color 0.3s;
 }
 
 nav h1:hover {
-    color: #4b9085;
+    color: #38b2ac;
 }
 
 nav ul {
@@ -51,14 +58,30 @@ nav ul {
 }
 
 nav ul li a {
+    position: relative;
     color: white;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
 }
 
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background-color: #38b2ac;
+    transition: width 0.3s;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
 nav ul li a:hover {
-    color: #4b9085;
+    color: #38b2ac;
 }
 
 /* Main Content */
@@ -70,41 +93,43 @@ main {
 
 /* Sections */
 section {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+    animation: fadeIn 1s ease-out forwards;
     opacity: 0;
-    animation: fadeIn 0.5s ease forwards;
 }
 
 @keyframes fadeIn {
-    to { opacity: 1; }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 h2 {
-    font-size: 2rem;
-    color: #334155;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #4b9085;
+    font-size: 2.2rem;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid #38b2ac;
     display: inline-block;
+    padding-bottom: 0.3rem;
 }
 
 /* Intro Section */
 #intro {
     text-align: center;
-    padding: 2rem 0;
+    padding: 3rem 0;
 }
 
 #intro h2 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
 }
 
 #intro p {
     font-size: 1.2rem;
-    color: #666;
+    color: #555;
 }
 
 #intro .subtitle {
     font-size: 1rem;
-    color: #888;
+    color: #7b8794;
     margin-top: 0.5rem;
 }
 
@@ -112,40 +137,70 @@ h2 {
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .project-card {
-    background: #f8fafc;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
+    transform: scale(1.03);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
 }
 
 .project-card h3 {
-    color: #334155;
+    color: #1e293b;
     margin-bottom: 0.5rem;
+    font-size: 1.3rem;
 }
 
+.project-card p {
+    color: #555;
+}
+
+/* Buttons */
 .btn {
     display: inline-block;
-    padding: 0.5rem 1rem;
-    background: #64748b;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, #38b2ac, #2c7a7b);
     color: white;
     text-decoration: none;
-    border-radius: 5px;
-    margin-top: 0.5rem;
+    border-radius: 6px;
+    margin-top: 0.8rem;
     margin-right: 0.5rem;
-    transition: background 0.3s;
+    font-size: 0.95rem;
+    transition: background 0.3s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-25deg);
+    transition: 0.5s;
+}
+
+.btn:hover::after {
+    left: 125%;
 }
 
 .btn:hover {
-    background: #475569;
+    transform: translateY(-2px);
 }
 
 .btn-secondary {
@@ -159,39 +214,47 @@ h2 {
 /* Work List */
 .work-list {
     list-style: none;
+    padding-left: 0;
 }
 
 .work-list li {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f1f5f9;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.work-list li:hover {
+    background: #e2e8f0;
 }
 
 .work-list strong {
-    color: #334155;
-    font-size: 1.3rem;
+    color: #1e293b;
+    font-size: 1.2rem;
     font-weight: bold;
     display: block;
-    margin-bottom: 0.2rem;
 }
 
 .work-list span {
     display: block;
     font-size: 0.95rem;
-    color: #666;
-    margin-bottom: 0.2rem;
+    color: #555;
+    margin-top: 0.2rem;
 }
 
-/* Thin Line and CV Button */
+/* Divider and CV Button */
 hr {
     border: 0;
-    border-top: 1px solid #e2e8f0;
-    margin: 1rem 0;
+    border-top: 1px solid #cbd5e1;
+    margin: 2rem 0;
 }
 
 /* Footer */
 footer {
-    background: #334155;
+    background: #1e293b;
     color: white;
-    padding: 1.5rem;
+    padding: 2rem 0;
 }
 
 .footer-content {
@@ -199,57 +262,45 @@ footer {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: 2rem;
 }
 
-.footer-about {
-    flex: 1;
-}
-
-.footer-about h3 {
-    font-size: 1.2rem;
-    color: #4b9085;
-    margin-bottom: 0.5rem;
-}
-
-.footer-about p {
-    font-size: 0.9rem;
-    color: #cbd5e1;
-}
-
+.footer-about,
 .footer-links {
-    flex: 1;
-    text-align: left;
+    flex: 1 1 300px;
 }
 
+.footer-about h3,
 .footer-links h3 {
     font-size: 1.2rem;
-    color: #4b9085;
+    color: #38b2ac;
     margin-bottom: 0.5rem;
 }
 
+.footer-about p,
 .footer-links p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #cbd5e1;
-    margin-bottom: 0.5rem;
 }
 
 .footer-links ul {
     list-style: none;
+    padding-left: 0;
 }
 
 .footer-links ul li {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
 }
 
 .footer-links a {
-    color: #4b9085;
+    color: #38b2ac;
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .footer-links a:hover {
-    color: #3b7269;
+    color: #2c7a7b;
 }
 
 /* Responsive Design */
@@ -266,7 +317,7 @@ footer {
     }
 
     #intro h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
     .project-grid {
@@ -277,3 +328,5 @@ footer {
         flex-direction: column;
         text-align: center;
     }
+}
+
