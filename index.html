@@ -122,6 +122,23 @@
     <img src="https://github.com/ShkoJ/CO2-emission-prediction-model-/raw/main/GUI%20Emissions.gif" alt="CO2 GUI Demo" style="max-width:100%; border-radius: 8px;">
   </div>
 </div>
+<script>
+function openModal() {
+  document.getElementById("demoModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("demoModal").style.display = "none";
+}
+
+// Close when clicking outside the modal content
+window.onclick = function(event) {
+  const modal = document.getElementById("demoModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 
 </body>
 </html>
