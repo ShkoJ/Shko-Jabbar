@@ -104,7 +104,6 @@ contactForm.addEventListener('submit', async (e) => {
     
     const formData = new FormData(contactForm);
     const data = {
-        name: formData.get('name'),
         email: formData.get('email'),
         subject: formData.get('subject'),
         message: formData.get('message')
@@ -112,9 +111,7 @@ contactForm.addEventListener('submit', async (e) => {
     
     // Create mailto link with form data and recipient
     const recipientEmail = 'shko.jabbarr@gmail.com';
-    const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(
-        `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
-    )}`;
+    const mailtoLink = `mailto:${recipientEmail}?from=${encodeURIComponent(data.email)}&subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.message)}`;
 
     // Open default email client
     window.location.href = mailtoLink;
