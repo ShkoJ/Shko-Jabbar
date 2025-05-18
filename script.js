@@ -81,6 +81,14 @@ sections.forEach(section => {
 // Contact form handling
 const contactForm = document.getElementById('contact-form');
 const fileInput = document.getElementById('attachment');
+const submitBtn = document.getElementById('submit-btn');
+const formStatus = document.getElementById('form-status');
+
+// Initialize EmailJS
+(function() {
+    // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
+    emailjs.init("YOUR_PUBLIC_KEY");
+})();
 
 fileInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
@@ -99,26 +107,72 @@ fileInput.addEventListener('change', (e) => {
     }
 });
 
+function showLoading(isLoading) {
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+    
+    btnText.style.display = isLoading ? 'none' : 'inline';
+    btnLoading.style.display = isLoading ? 'inline' : 'none';
+    submitBtn.disabled = isLoading;
+}
+
+function showStatus(message, isError = false) {
+    formStatus.textContent = message;
+    formStatus.style.display = 'block';
+    formStatus.style.color = isError ? 'red' : 'green';
+    
+    // Hide status after 5 seconds
+    setTimeout(() => {
+        formStatus.style.display = 'none';
+    }, 5000);
+}
+
 contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    showLoading(true);
     
     const formData = new FormData(contactForm);
-    const data = {
-        email: formData.get('email'),
-        subject: formData.get('subject'),
-        message: formData.get('message')
-    };
+    const file = fileInput.files[0];
     
-    // Create mailto link with form data and recipient
-    const recipientEmail = 'shko.jabbarr@gmail.com';
-    const mailtoLink = `mailto:${recipientEmail}?from=${encodeURIComponent(data.email)}&subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.message)}`;
+    try {
+        // Prepare template parameters
+        const templateParams = {
+            from_name: formData.get('name'),
+            from_email: formData.get('email'),
+            subject: formData.get('subject'),
+            message: formData.get('message'),
+            has_attachment: file ? 'Yes' : 'No',
+            attachment_name: file ? file.name : 'None'
+        };
 
-    // Open default email client
-    window.location.href = mailtoLink;
-    
-    // Clear form
-    contactForm.reset();
-    document.querySelector('.file-info').textContent = 'Max file size: 5MB';
+        // If there's a file, convert it to base64 and add to parameters
+        if (file) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            
+            await new Promise((resolve, reject) => {
+                reader.onload = () => {
+                    templateParams.attachment = reader.result;
+                    resolve();
+                };
+                reader.onerror = reject;
+            });
+        }
+
+        // Send email using EmailJS
+        // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your actual EmailJS service and template IDs
+        await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams);
+        
+        showStatus('Message sent successfully! I will get back to you soon.');
+        contactForm.reset();
+        document.querySelector('.file-info').textContent = 'Max file size: 5MB';
+        
+    } catch (error) {
+        console.error('Error sending message:', error);
+        showStatus('Failed to send message. Please try again later.', true);
+    } finally {
+        showLoading(false);
+    }
 });
 
 // Loading animation
