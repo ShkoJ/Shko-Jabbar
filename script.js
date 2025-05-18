@@ -103,16 +103,22 @@ contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData);
+    const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message')
+    };
     
-    // Here you would typically send the data to a server
-    // For demonstration, we'll just show what would be sent
-    console.log('Form data:', data);
-    if (fileInput.files[0]) {
-        console.log('File to be sent:', fileInput.files[0]);
-    }
+    // Create mailto link with form data
+    const mailtoLink = `mailto:shko.jabbarr@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(
+        `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
+    )}`;
+
+    // Open default email client
+    window.location.href = mailtoLink;
     
-    alert('Thank you for your message! I will get back to you soon.');
+    // Clear form
     contactForm.reset();
     document.querySelector('.file-info').textContent = 'Max file size: 5MB';
 });
@@ -270,11 +276,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const catScene = document.getElementById('cat-scene');
     const petButton = document.getElementById('pet-cat');
     let isPetting = false;
+    const catSound = new Audio('maw.mp3');
+    catSound.volume = 0.8; // Set volume to 80%
 
     function petCat() {
         if (!isPetting) {
             isPetting = true;
             catScene.style.transform = 'scale(0.95)';
+            catSound.currentTime = 0; // Reset sound to start
+            catSound.play();
             
             setTimeout(() => {
                 catScene.style.transform = 'scale(1)';
