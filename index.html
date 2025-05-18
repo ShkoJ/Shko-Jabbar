@@ -1,27 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shko Jabbar</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
+    <div class="loading"></div>
     <header>
         <nav>
             <h1>Shko Jabbar</h1>
             <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#work">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section id="intro">
-            <h2>Hello, I’m Shko</h2>
-            <p>Student | Software Engineer</p>
-            <p class="subtitle">Studying at University of Kurdistan Hawler, expected B.S. in Software Engineering 2026</p>
+            <div class="intro-content">
+                <h2>Hello, I'm Shko</h2>
+                <p class="typing-text">Student | Software Engineer</p>
+                <p class="subtitle">Studying at University of Kurdistan Hawler, expected B.S. in Software Engineering 2026</p>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="highlight">I'm a passionate software engineering student at UKH, driven by the desire to create innovative solutions that make a real impact.</p>
+                    <div class="about-details">
+                        <div class="about-item">
+                            <i class="fas fa-laptop-code"></i>
+                            <p>Specializing in full-stack development and data science, I bring ideas to life through code.</p>
+                        </div>
+                        <div class="about-item">
+                            <i class="fas fa-chart-line"></i>
+                            <p>Experienced in data analysis and machine learning, using tools like Python, Pandas, and TensorFlow.</p>
+                        </div>
+                        <div class="about-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>Always eager to learn new technologies and take on challenges that push my skills further.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-items">
+                        <div class="skill-item"><i class="fab fa-python"></i> Python</div>
+                        <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
+                        <div class="skill-item"><i class="fab fa-php"></i> PHP</div>
+                        <div class="skill-item"><i class="fas fa-code"></i> R</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Science & ML</h3>
+                    <div class="skill-items">
+                        <div class="skill-item"><i class="fas fa-table"></i> Pandas</div>
+                        <div class="skill-item"><i class="fas fa-calculator"></i> NumPy</div>
+                        <div class="skill-item"><i class="fas fa-brain"></i> TensorFlow</div>
+                        <div class="skill-item"><i class="fas fa-robot"></i> Scikit-learn</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Web Development</h3>
+                    <div class="skill-items">
+                        <div class="skill-item"><i class="fab fa-html5"></i> HTML5</div>
+                        <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+                        <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Technologies</h3>
+                    <div class="skill-items">
+                        <div class="skill-item"><i class="fab fa-git-alt"></i> Git</div>
+                        <div class="skill-item"><i class="fab fa-github"></i> GitHub</div>
+                        <div class="skill-item"><i class="fas fa-code"></i> VS Code</div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="projects">
@@ -35,6 +113,13 @@
                     <a href="https://github.com/ShkoJ/Heart-Disease-Classification-Project" class="btn btn-secondary">View Code on GitHub</a>
                 </div>
 
+                <!-- Book Project -->
+                <div class="project-card">
+                    <h3>R4NTR Book</h3>
+                    <p>Co-authoring a beginner's guide to R programming with my professor, currently in early stages.</p>
+                    <a href="https://github.com/polla-fattah/R4NTR" class="btn btn-secondary">View on GitHub</a>
+                </div>
+
                 <!-- Dog Breed Classifier -->
                 <div class="project-card">
                     <h3>Dog Breed Classification</h3>
@@ -46,7 +131,7 @@
                 <div class="project-card">
                     <h3>Bulldozer Price Prediction</h3>
                     <p>A machine learning model to predict bulldozer sale prices using Kaggle competition data.</p>
-                    <a href="https://github.com/ShkoJ/bulldozer-price-prediction-project" class="btn btn-secondary">View on GitHub</a>
+                    <a href="https://github.com/ShkoJ/bulldozer-price-prediction-project" class="btn btn-secondary">View Code on GitHub</a>
                 </div>
 
                 <!-- CO2 App -->
@@ -54,13 +139,6 @@
                     <h3>CO2 Emission Prediction Model</h3>
                     <p>A Tkinter-based Machine Learning model that predicts CO2 emissions using Linear Regression.</p>
                     <a href="https://github.com/ShkoJ/CO2-emission-prediction-model-" class="btn btn-secondary">View Code on GitHub</a>
-                </div>
-
-                <!-- Book Project -->
-                <div class="project-card">
-                    <h3>R4NTR Book</h3>
-                    <p>Co-authoring a beginner’s guide to R programming with my professor, currently in early stages.</p>
-                    <a href="https://github.com/polla-fattah/R4NTR" class="btn btn-secondary">View on GitHub</a>
                 </div>
 
                 <!-- Kaggle -->
@@ -86,28 +164,81 @@
             <hr>
             <a href="Shko Jabbar - CV.pdf" download class="btn">Download My CV</a>
         </section>
+
+        <section id="contact">
+            <h2>Get in Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-envelope"></i> shko.jabbarr@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +964 751 733 8448</p>
+                    <div class="social-links">
+                        <a href="https://github.com/ShkoJ" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/shko-jabbar-72686727b/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.kaggle.com/shkoae" target="_blank"><i class="fab fa-kaggle"></i></a>
+                    </div>
+                    <div class="cat-container">
+                        <div id="cat-scene">
+                            <img src="small_cat.jpeg" alt="Cute cat" class="cat-image">
+                        </div>
+                        <div class="cat-controls">
+                            <button id="pet-cat" class="cat-action-btn">Pet Cat</button>
+                        </div>
+                    </div>
+                </div>
+                <form id="contact-form" class="contact-form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="attachment">Attachment</label>
+                        <input type="file" id="attachment" name="attachment" class="file-input">
+                        <small class="file-info">Max file size: 5MB</small>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-about">
-                <h3>About</h3>
-                <p>I’m Shko Jabbar, a software engineering student at UKH with a strong interest in building practical, real-world solutions. From developing full-stack applications to exploring data-driven insights, I enjoy working across different areas of software development. I’m proficient in Python, and experienced with tools like Pandas, NumPy, Matplotlib, and TensorFlow, as well as web technologies and general programming principles. I’m always eager to learn new technologies and take on challenges that push my skills further.</p>
-            </div>
             <div class="footer-links">
-                <h3>Contact</h3>
-                <p>shko.jabbarr@gmail.com</p>
+                <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="https://github.com/ShkoJ">GitHub</a></li>
-                    <li><a href="https://www.linkedin.com/in/shko-jabbar-72686727b/">LinkedIn</a></li>
-                    <li><a href="https://www.kaggle.com/shkoae">Kaggle</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#work">Work</a></li>
                 </ul>
             </div>
+            <div class="footer-social">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="https://github.com/ShkoJ" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/shko-jabbar-72686727b/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.kaggle.com/shkoae" target="_blank"><i class="fab fa-kaggle"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Shko Jabbar. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
