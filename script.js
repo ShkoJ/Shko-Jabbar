@@ -1,4 +1,4 @@
-// Dark mode toggle
+// Dark mode toggleMore actions
 const themeToggle = document.getElementById('theme-toggle');
 const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -26,7 +26,7 @@ let typingSpeed = 100;
 
 function typeText() {
     const currentPhrase = phrases[phraseIndex];
-    
+
     if (isDeleting) {
         typingText.textContent = currentPhrase.substring(0, charIndex - 1);
         charIndex--;
@@ -81,11 +81,19 @@ sections.forEach(section => {
 // Contact form handling
 const contactForm = document.getElementById('contact-form');
 const fileInput = document.getElementById('attachment');
+const submitBtn = document.getElementById('submit-btn');
+const formStatus = document.getElementById('form-status');
+
+// Initialize EmailJS
+(function() {
+    // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
+    emailjs.init("YOUR_PUBLIC_KEY");
+})();
 
 fileInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
     const fileInfo = document.querySelector('.file-info');
-    
+
     if (file) {
         const fileSize = (file.size / 1024 / 1024).toFixed(2); // Convert to MB
         if (fileSize > 5) {
@@ -99,20 +107,80 @@ fileInput.addEventListener('change', (e) => {
     }
 });
 
+function showLoading(isLoading) {
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+    
+    btnText.style.display = isLoading ? 'none' : 'inline';
+    btnLoading.style.display = isLoading ? 'inline' : 'none';
+    submitBtn.disabled = isLoading;
+}
+
+function showStatus(message, isError = false) {
+    formStatus.textContent = message;
+    formStatus.style.display = 'block';
+    formStatus.style.color = isError ? 'red' : 'green';
+    
+    // Hide status after 5 seconds
+    setTimeout(() => {
+        formStatus.style.display = 'none';
+    }, 5000);
+}
+
 contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+    showLoading(true);
+
     const formData = new FormData(contactForm);
+    const file = fileInput.files[0];
     const data = {
         email: formData.get('email'),
         subject: formData.get('subject'),
         message: formData.get('message')
     };
-    
+
+    try {
+        // Prepare template parameters
+        const templateParams = {
+            from_name: formData.get('name'),
+            from_email: formData.get('email'),
+            subject: formData.get('subject'),
+            message: formData.get('message'),
+            has_attachment: file ? 'Yes' : 'No',
+            attachment_name: file ? file.name : 'None'
+        };
     // Create mailto link with form data and recipient
     const recipientEmail = 'shko.jabbarr@gmail.com';
     const mailtoLink = `mailto:${recipientEmail}?from=${encodeURIComponent(data.email)}&subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.message)}`;
 
+        // If there's a file, convert it to base64 and add to parameters
+        if (file) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            
+            await new Promise((resolve, reject) => {
+                reader.onload = () => {
+                    templateParams.attachment = reader.result;
+                    resolve();
+                };
+                reader.onerror = reject;
+            });
+        }
+
+        // Send email using EmailJS
+        // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your actual EmailJS service and template IDs
+        await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams);
+        
+        showStatus('Message sent successfully! I will get back to you soon.');
+        contactForm.reset();
+        document.querySelector('.file-info').textContent = 'Max file size: 5MB';
+        
+    } catch (error) {
+        console.error('Error sending message:', error);
+        showStatus('Failed to send message. Please try again later.', true);
+    } finally {
+        showLoading(false);
+    }
     // Open default email client
     window.location.href = mailtoLink;
     
@@ -176,14 +244,14 @@ catContainer.addEventListener('mousemove', (e) => {
     const rect = catContainer.getBoundingClientRect();
     mouseX = e.clientX - rect.left;
     mouseY = e.clientY - rect.top;
-    
+
     // Move yarn ball to cursor position
     yarnBall.style.left = `${mouseX - 15}px`;
     yarnBall.style.top = `${mouseY - 15}px`;
-    
+
     // Update cat eye position
     updateCatEyes();
-    
+
     // Make cat follow yarn ball with some delay
     followYarnBall();
 });
@@ -191,18 +259,18 @@ catContainer.addEventListener('mousemove', (e) => {
 function updateCatEyes() {
     const catRect = cat.getBoundingClientRect();
     const containerRect = catContainer.getBoundingClientRect();
-    
+
     catEyes.forEach(eye => {
         const eyeRect = eye.getBoundingClientRect();
         const eyeCenterX = eyeRect.left + eyeRect.width / 2 - containerRect.left;
         const eyeCenterY = eyeRect.top + eyeRect.height / 2 - containerRect.top;
-        
+
         const angle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
         const distance = Math.min(3, Math.hypot(mouseX - eyeCenterX, mouseY - eyeCenterY) / 10);
-        
+
         const x = Math.cos(angle) * distance;
         const y = Math.sin(angle) * distance;
-        
+
         eye.style.transform = `translate(${x}px, ${y}px)`;
     });
 }
@@ -210,21 +278,21 @@ function updateCatEyes() {
 function followYarnBall() {
     const catRect = cat.getBoundingClientRect();
     const containerRect = catContainer.getBoundingClientRect();
-    
+
     const targetX = mouseX - containerRect.width / 2;
     const targetY = mouseY - containerRect.height / 2;
-    
+
     // Smooth follow with easing
     catX += (targetX - catX) * 0.1;
     catY += (targetY - catY) * 0.1;
-    
+
     // Limit cat movement within container
     const maxX = containerRect.width / 2 - catRect.width / 2;
     const maxY = containerRect.height / 2 - catRect.height / 2;
-    
+
     catX = Math.max(-maxX, Math.min(maxX, catX));
     catY = Math.max(-maxY, Math.min(maxY, catY));
-    
+
     cat.style.transform = `translate(${catX}px, ${catY}px)`;
 }
 
@@ -283,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
             catScene.style.transform = 'scale(0.95)';
             catSound.currentTime = 0; // Reset sound to start
             catSound.play();
-            
+
             setTimeout(() => {
                 catScene.style.transform = 'scale(1)';
                 isPetting = false;
