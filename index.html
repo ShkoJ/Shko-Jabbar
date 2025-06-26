@@ -17,16 +17,15 @@
     <div class="loading"></div>
     <header>
         <nav>
-            <h1>Shko Jabbar</h1>
+            <h1 class="site-logo">
+                <span class="logo-text">Shko Jabbar</span>
+            </h1>
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#work">Work</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><button id="theme-toggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
-                </button></li>
             </ul>
         </nav>
     </header>
@@ -35,30 +34,20 @@
         <section id="intro">
             <div class="intro-content">
                 <h2>Hello, I'm Shko</h2>
-                <p class="typing-text">Student | Software Engineer</p>
+                <p class="typing-text">Software Engineer</p>
                 <p class="subtitle">Studying at University of Kurdistan Hawler, expected B.S. in Software Engineering 2026</p>
             </div>
         </section>
 
         <section id="about">
             <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="highlight">I'm a passionate software engineering student at UKH, driven by the desire to create innovative solutions that make a real impact.</p>
-                    <div class="about-details">
-                        <div class="about-item">
-                            <i class="fas fa-laptop-code"></i>
-                            <p>Specializing in full-stack development and data science, I bring ideas to life through code.</p>
-                        </div>
-                        <div class="about-item">
-                            <i class="fas fa-chart-line"></i>
-                            <p>Experienced in data analysis and machine learning, using tools like Python, Pandas, and TensorFlow.</p>
-                        </div>
-                        <div class="about-item">
-                            <i class="fas fa-lightbulb"></i>
-                            <p>Always eager to learn new technologies and take on challenges that push my skills further.</p>
-                        </div>
-                    </div>
+            <div class="about-cv-flex" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div class="about-text" style="flex: 2; min-width: 220px; text-align: left; max-width: 400px;">
+                    <p class="highlight">Software Engineer and Data Scientist.</p>
+                    <p>Experienced in full-stack development, data science, and machine learning. Skilled in Python, Pandas, TensorFlow, and web technologies.</p>
+                </div>
+                <div style="flex: 1; min-width: 180px; text-align: right;">
+                    <a href="Shko Jabbar - CV.pdf" download class="btn">Download My CV</a>
                 </div>
             </div>
         </section>
@@ -68,37 +57,33 @@
             <div class="skills-grid">
                 <div class="skill-category">
                     <h3>Programming Languages</h3>
-                    <div class="skill-items">
-                        <div class="skill-item"><i class="fab fa-python"></i> Python</div>
-                        <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
-                        <div class="skill-item"><i class="fab fa-php"></i> PHP</div>
-                        <div class="skill-item"><i class="fas fa-code"></i> R</div>
-                    </div>
+                    <ul class="skill-items two-columns">
+                        <li>Python</li>
+                        <li>JavaScript</li>
+                        <li>R</li>
+                        <li>Java</li>
+                        <li>C</li>
+                        <li>C++</li>
+                    </ul>
                 </div>
                 <div class="skill-category">
                     <h3>Data Science & ML</h3>
-                    <div class="skill-items">
-                        <div class="skill-item"><i class="fas fa-table"></i> Pandas</div>
-                        <div class="skill-item"><i class="fas fa-calculator"></i> NumPy</div>
-                        <div class="skill-item"><i class="fas fa-brain"></i> TensorFlow</div>
-                        <div class="skill-item"><i class="fas fa-robot"></i> Scikit-learn</div>
-                    </div>
+                    <ul class="skill-items two-columns">
+                        <li>Pandas</li>
+                        <li>NumPy</li>
+                        <li>TensorFlow</li>
+                        <li>Scikit-learn</li>
+                        <li>EDA</li>
+                    </ul>
                 </div>
                 <div class="skill-category">
                     <h3>Web Development</h3>
-                    <div class="skill-items">
-                        <div class="skill-item"><i class="fab fa-html5"></i> HTML5</div>
-                        <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS3</div>
-                        <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools & Technologies</h3>
-                    <div class="skill-items">
-                        <div class="skill-item"><i class="fab fa-git-alt"></i> Git</div>
-                        <div class="skill-item"><i class="fab fa-github"></i> GitHub</div>
-                        <div class="skill-item"><i class="fas fa-code"></i> VS Code</div>
-                    </div>
+                    <ul class="skill-items two-columns">
+                        <li>HTML5</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>Django</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -113,21 +98,18 @@
                     <a href="https://heart-disease-appp.streamlit.app/" class="btn">Try the App</a>
                     <a href="https://github.com/ShkoJ/Heart-Disease-Classification-Project" class="btn btn-secondary">View Code on GitHub</a>
                 </div>
-
                 <!-- Book Project -->
                 <div class="project-card">
                     <h3>R4NTR Book</h3>
                     <p>Co-authoring a beginner's guide to R programming with my professor, currently in early stages.</p>
                     <a href="https://github.com/polla-fattah/R4NTR" class="btn btn-secondary">View on GitHub</a>
                 </div>
-
-                <!-- Diabetes Prediction Project -->
+                <!-- Dog Breed Classifier -->
                 <div class="project-card">
-                    <h3>Diabetes Prediction Project</h3>
-                    <p>End-to-end machine learning solution for diabetes prediction in women using medical diagnostic measurements with interactive GUI.</p>
-                    <a href="https://github.com/ShkoJ/diabetes-prediction-project" class="btn btn-secondary">View Code on GitHub</a>
+                    <h3>Dog Breed Classification</h3>
+                    <p>A TensorFlow model trained in Google Colab to classify dog breeds from images.</p>
+                    <a href="https://github.com/ShkoJ/ShkoJ-Dog-Breed-Classification-Project" class="btn btn-secondary">View Code on GitHub</a>
                 </div>
-
                 <!-- Virtual Desktop Assistant -->
                 <div class="project-card">
                     <h3>Virtual Desktop Assistant</h3>
@@ -135,34 +117,27 @@
                     <a href="https://youtu.be/igFPu53AaEc" class="btn">See Demo</a>
                     <a href="https://github.com/ShkoJ/virtual-desktop-assistant" class="btn btn-secondary">View Code on GitHub</a>
                 </div>
-
-                <!-- Dog Breed Classifier -->
-                <div class="project-card">
-                    <h3>Dog Breed Classification</h3>
-                    <p>A TensorFlow model trained in Google Colab to classify dog breeds from images.</p>
-                    <a href="https://github.com/ShkoJ/ShkoJ-Dog-Breed-Classification-Project" class="btn btn-secondary">View Code on GitHub</a>
+                <!-- Diabetes Prediction Project -->
+                <div class="project-card hidden-project-card">
+                    <h3>Diabetes Prediction Project</h3>
+                    <p>End-to-end machine learning solution for diabetes prediction in women using medical diagnostic measurements with interactive GUI.</p>
+                    <a href="https://github.com/ShkoJ/diabetes-prediction-project" class="btn btn-secondary">View Code on GitHub</a>
                 </div>
-
                 <!-- Bulldozer Price Prediction -->
-                <div class="project-card">
+                <div class="project-card hidden-project-card">
                     <h3>Bulldozer Price Prediction</h3>
                     <p>A machine learning model to predict bulldozer sale prices using Kaggle competition data.</p>
                     <a href="https://github.com/ShkoJ/bulldozer-price-prediction-project" class="btn btn-secondary">View Code on GitHub</a>
                 </div>
-
                 <!-- CO2 App -->
-                <div class="project-card">
+                <div class="project-card hidden-project-card">
                     <h3>CO2 Emission Prediction Model</h3>
                     <p>A Tkinter-based Machine Learning model that predicts CO2 emissions using Linear Regression.</p>
                     <a href="https://github.com/ShkoJ/CO2-emission-prediction-model-" class="btn btn-secondary">View Code on GitHub</a>
                 </div>
-
-                <!-- Kaggle -->
-                <div class="project-card">
-                    <h3>Kaggle Notebooks</h3>
-                    <p>Data analysis and visualization projects showcasing my skills.</p>
-                    <a href="https://www.kaggle.com/shkoae" class="btn btn-secondary">See My Kaggle</a>
-                </div>
+            </div>
+            <div style="text-align:center; margin-top:1.5rem;">
+                <button id="show-more-projects" class="btn btn-secondary" onclick="toggleProjects()">Show More</button>
             </div>
         </section>
 
@@ -178,8 +153,6 @@
                 <li><strong>WAVE Agency</strong><span>Full-Time Co-Founder, Feb - Dec 2024</span><span>Directed marketing strategies and client outreach for a growing agency.</span></li>
                 <li><strong>Daroon NGO</strong><span>Full-Time Co-Founder, Jul 2023 - Jul 2024</span><span>Led initiatives to raise awareness on drug abuse, engaging the community through events.</span></li>
             </ul>
-            <hr>
-            <a href="Shko Jabbar - CV.pdf" download class="btn">Download My CV</a>
         </section>
 
         <section id="contact">
@@ -192,7 +165,6 @@
                     <div class="social-links">
                         <a href="https://github.com/ShkoJ" target="_blank"><i class="fab fa-github"></i></a>
                         <a href="https://www.linkedin.com/in/shko-jabbar-72686727b/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.kaggle.com/shkoae" target="_blank"><i class="fab fa-kaggle"></i></a>
                     </div>
                     <div class="cat-container">
                         <div id="cat-scene">
@@ -203,36 +175,22 @@
                         </div>
                     </div>
                 </div>
-                <form id="contact-form" class="contact-form" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <div class="form-group">
+                <form id="contact-form" class="contact-form" enctype="multipart/form-data" style="display:none;">
+                    <!-- DO NOT TOUCH THIS PART OF THE CODE -->
+                    <div class="form-group" style="display:none;">
                         <label for="attachment">Attachment</label>
                         <input type="file" id="attachment" name="attachment" class="file-input">
                         <small class="file-info">Max file size: 5MB</small>
                     </div>
-                    <button type="submit" class="btn" id="submit-btn">
+                    <button type="submit" class="btn" id="submit-btn" style="display:none;">
                         <span class="btn-text">Send Message</span>
                         <span class="btn-loading" style="display: none;">
                             <i class="fas fa-spinner fa-spin"></i> Sending...
                         </span>
                     </button>
                     <div id="form-status" style="margin-top: 1rem; display: none;"></div>
-                    <button type="submit" class="btn">Send Message</button>
+                    <!-- DO NOT TOUCH THIS PART OF THE CODE -->
+                    <button type="submit" class="btn" style="display:none;">Send Message</button>
                 </form>
             </div>
         </section>
@@ -254,7 +212,6 @@
                 <div class="social-links">
                     <a href="https://github.com/ShkoJ" target="_blank"><i class="fab fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/shko-jabbar-72686727b/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.kaggle.com/shkoae" target="_blank"><i class="fab fa-kaggle"></i></a>
                 </div>
             </div>
         </div>
@@ -264,5 +221,24 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+    function toggleProjects() {
+        const extraCards = document.querySelectorAll('.project-card.hidden-project-card, .project-card:not(.hidden-project-card):nth-child(n+5)');
+        const btn = document.getElementById('show-more-projects');
+        const anyHidden = Array.from(extraCards).some(card => card.classList.contains('hidden-project-card'));
+        if (anyHidden) {
+            extraCards.forEach(card => card.classList.remove('hidden-project-card'));
+            btn.textContent = 'Show Less';
+        } else {
+            extraCards.forEach(card => card.classList.add('hidden-project-card'));
+            btn.textContent = 'Show More';
+        }
+    }
+
+    // Set page zoom to 80% on load
+    window.addEventListener('DOMContentLoaded', function() {
+        document.body.style.zoom = '0.8';
+    });
+    </script>
 </body>
 </html>
