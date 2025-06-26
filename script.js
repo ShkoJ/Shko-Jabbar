@@ -1,24 +1,6 @@
-// Dark mode toggleMore actions
-const themeToggle = document.getElementById('theme-toggle');
-const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-// Always start with dark mode
-const currentTheme = localStorage.getItem('theme') || 'dark';
-document.documentElement.setAttribute('data-theme', currentTheme);
-
-// Update moon/sun icon based on current theme
-themeToggle.innerHTML = `<i class="fas fa-${currentTheme === 'dark' ? 'sun' : 'moon'}"></i>`;
-
-// Theme toggle click handler
-themeToggle.addEventListener('click', () => {
-    document.documentElement.setAttribute('data-theme', 
-        document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
-    );
-});
-
 // Typing animation
 const typingText = document.querySelector('.typing-text');
-const phrases = ['Student', 'Software Engineer', 'Data Science Enthusiast'];
+const phrases = ['Data Scientist', 'Software Engineer'];
 let phraseIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
