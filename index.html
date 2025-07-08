@@ -146,14 +146,74 @@
         <section id="work">
             <h2>Work Experience</h2>
             <ul class="work-list">
-                <li><strong>University of Kurdistan Hawler (UKH)</strong><span>Library Management Tester – Internship, May - June 2025</span><span>Part of the official testing team for UKH's newly implemented library system, identifying critical UX bugs and analyzing usage data to optimize the digital library interface.</span></li>
-                <li><strong>Artificial Intelligence and Innovation Center (AIIC)</strong><span>Intern Data Scientist, Feb - Mar 2025</span><span>Conducted data analysis with Python and Pandas to identify trends and deliver actionable insights for AI projects.</span></li>
-                <li><strong>FiveOneLabs and OrangeCorners Erbil</strong><span>Full-Time Participant, Aug - Dec 2024</span><span>Designed and prototyped a mental health app, integrating data visualization for user insights.</span></li>
-                <li><strong>AL Judi</strong><span>Full-Time IT Specialist, Jul - Sep 2023</span><span>Oversaw IT operations, troubleshooting systems and maintaining network reliability.</span></li>
-                <li><strong>Rawatan</strong><span>Freelancer, Jun - Jul 2024</span><span>Produced marketing campaigns and high-quality photography to boost brand visibility.</span></li>
-                <li><strong>WAVE Agency</strong><span>Full-Time Co-Founder, Feb - Dec 2024</span><span>Directed marketing strategies and client outreach for a growing agency.</span></li>
-                <li><strong>Daroon NGO</strong><span>Full-Time Co-Founder, Jul 2023 - Jul 2024</span><span>Led initiatives to raise awareness on drug abuse, engaging the community through events.</span></li>
+                <li class="work-card">
+                  <div class="work-card-header">
+                    <strong>Kurdistan Foundation - Jobs.KRD</strong>
+                    <span class="work-duration">Jun - Jul 2025</span>
+                  </div>
+                  <span class="work-title">Website Tester – Freelance</span>
+                  <span class="work-desc">Part of the official testing team for the Jobs.KRD website, identified critical bugs and usability issues to optimize site performance.</span>
+                </li>
+                <li class="work-card">
+                  <div class="work-card-header">
+                    <strong>University of Kurdistan Hawler (UKH)</strong>
+                    <span class="work-duration">May - June 2025</span>
+                  </div>
+                  <span class="work-title">Library Management Tester – Internship</span>
+                  <span class="work-desc">Part of the official testing team for UKH's newly implemented library system, identifying critical UX bugs and analyzing usage data to optimize the digital library interface.</span>
+                </li>
+                <li class="work-card">
+                  <div class="work-card-header">
+                    <strong>Artificial Intelligence and Innovation Center (AIIC)</strong>
+                    <span class="work-duration">Feb - Mar 2025</span>
+                  </div>
+                  <span class="work-title">Data Scientist – Internship</span>
+                  <span class="work-desc">Conducted data analysis with Python and Pandas to identify trends and deliver actionable insights for AI projects.</span>
+                </li>
+                <li class="work-card hidden-work-card">
+                  <div class="work-card-header">
+                    <strong>FiveOneLabs and OrangeCorners Erbil</strong>
+                    <span class="work-duration">Aug - Dec 2024</span>
+                  </div>
+                  <span class="work-title">Participant – Full-Time</span>
+                  <span class="work-desc">Designed and prototyped a mental health app, integrating data visualization for user insights.</span>
+                </li>
+                <li class="work-card hidden-work-card">
+                  <div class="work-card-header">
+                    <strong>AL Judi</strong>
+                    <span class="work-duration">Jul - Sep 2023</span>
+                  </div>
+                  <span class="work-title">IT Specialist – Full-Time</span>
+                  <span class="work-desc">Oversaw IT operations, troubleshooting systems and maintaining network reliability.</span>
+                </li>
+                <li class="work-card hidden-work-card">
+                  <div class="work-card-header">
+                    <strong>Rawatan</strong>
+                    <span class="work-duration">Jun - Jul 2024</span>
+                  </div>
+                  <span class="work-title">Marketing – Freelance</span>
+                  <span class="work-desc">Produced marketing campaigns and high-quality photography to boost brand visibility.</span>
+                </li>
+                <li class="work-card hidden-work-card">
+                  <div class="work-card-header">
+                    <strong>WAVE Agency</strong>
+                    <span class="work-duration">Feb - Dec 2024</span>
+                  </div>
+                  <span class="work-title">Co-Founder – Full-Time</span>
+                  <span class="work-desc">Directed marketing strategies and client outreach for a growing agency.</span>
+                </li>
+                <li class="work-card hidden-work-card">
+                  <div class="work-card-header">
+                    <strong>Daroon NGO</strong>
+                    <span class="work-duration">Jul 2023 - Jul 2024</span>
+                  </div>
+                  <span class="work-title">Co-Founder – Full-Time</span>
+                  <span class="work-desc">Led initiatives to raise awareness on drug abuse, engaging the community through events.</span>
+                </li>
             </ul>
+            <div style="text-align:center; margin-top:1.5rem;">
+                <button id="show-more-work" class="btn btn-secondary" onclick="toggleWork()">Show More</button>
+            </div>
         </section>
 
         <section id="contact">
@@ -235,6 +295,25 @@
             btn.textContent = 'Show More';
         }
     }
+
+    function toggleWork() {
+        const extraWorkCards = document.querySelectorAll('.work-card.hidden-work-card, .work-card:not(.hidden-work-card):nth-child(n+4)');
+        const btn = document.getElementById('show-more-work');
+        const anyHidden = Array.from(extraWorkCards).some(card => card.classList.contains('hidden-work-card'));
+        if (anyHidden) {
+            extraWorkCards.forEach(card => card.classList.remove('hidden-work-card'));
+            btn.textContent = 'Show Less';
+        } else {
+            extraWorkCards.forEach(card => card.classList.add('hidden-work-card'));
+            btn.textContent = 'Show More';
+        }
+    }
+    </script>
+    <script>
+      // Automatically set zoom to 80% on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.style.zoom = '80%';
+      });
     </script>
 </body>
 </html>
