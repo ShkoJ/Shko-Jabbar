@@ -315,5 +315,58 @@
         document.body.style.zoom = '80%';
       });
     </script>
+    <!-- Chat Bubble and Botpress Integration -->
+<!-- Add this before the closing </body> tag in your HTML -->
+<div id="chat-bubble" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #007bff; /* Blue background, customize as needed */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: transform 0.2s;
+">
+    <span style="color: white; font-size: 24px;">💬</span> <!-- Chat icon -->
+</div>
+
+<!-- Botpress Webchat Scripts -->
+<script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js" defer></script>
+<script src="https://files.bpcontent.cloud/2025/08/24/09/20250824090247-FWTQM10I.js" defer></script>
+
+<!-- JavaScript to Toggle Chat Bubble -->
+<script>
+    // Wait for Botpress webchat to load
+    window.addEventListener('botpress:ready', () => {
+        // Initially hide the chat widget
+        window.botpressWebChat.hide();
+
+        // Toggle chat visibility on bubble click
+        document.getElementById('chat-bubble').addEventListener('click', () => {
+            if (window.botpressWebChat.isVisible()) {
+                window.botpressWebChat.hide(); // Hide the chat
+                document.getElementById('chat-bubble').style.transform = 'scale(1)';
+            } else {
+                window.botpressWebChat.show(); // Show the chat
+                document.getElementById('chat-bubble').style.transform = 'scale(0.9)';
+            }
+        });
+
+        // Optional: Adjust bubble opacity when chat is open/closed
+        window.addEventListener('botpress:webchat:visible', () => {
+            document.getElementById('chat-bubble').style.opacity = '0.5';
+        });
+        window.addEventListener('botpress:webchat:hidden', () => {
+            document.getElementById('chat-bubble').style.opacity = '1';
+        });
+    });
+</script>
 </body>
 </html>
+
