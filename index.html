@@ -315,57 +315,245 @@
         document.body.style.zoom = '80%';
       });
     </script>
-    <!-- Chat Bubble and Botpress Integration -->
-<!-- Add this before the closing </body> tag in your HTML -->
+<!-- Chat Bubble with JOBS.KRD Logo -->
 <div id="chat-bubble" style="
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 60px;
-    height: 60px;
-    background-color: #007bff; /* Blue background, customize as needed */
+    width: 70px;
+    height: 70px;
+    background-color: #1E90FF; /* Dodger Blue for a professional look */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3); /* Softer shadow */
     z-index: 1000;
-    transition: transform 0.2s;
+    transition: all 0.3s ease; /* Smooth transition for hover and click */
 ">
-    <span style="color: white; font-size: 24px;">💬</span> <!-- Chat icon -->
+    <img src="<!-- Chat Bubble with JOBS.KRD Logo -->
+<div id="chat-bubble" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 70px;
+    height: 70px;
+    background-color: #1E90FF; /* Dodger Blue for a professional look */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3); /* Softer shadow */
+    z-index: 1000;
+    transition: all 0.3s ease; /* Smooth transition for hover and click */
+">
+    <img src="https://example.com/jobs-krd-logo.png" alt="JOBS.KRD Logo" style="
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        border-radius: 50%;
+    ">
+    <!-- Tooltip -->
+    <span id="chat-tooltip" style="
+        position: absolute;
+        bottom: 100%;
+        right: 0;
+        background-color: #1E90FF;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 14px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s;
+    ">Chat with JOBS.KRD Bot</span>
 </div>
 
-<!-- Botpress Webchat Scripts -->
+<!-- Botpress Webchat Scripts for New Bot -->
 <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js" defer></script>
 <script src="https://files.bpcontent.cloud/2025/08/24/09/20250824090247-FWTQM10I.js" defer></script>
 
-<!-- JavaScript to Toggle Chat Bubble -->
+<!-- JavaScript to Toggle Chat and Customize -->
 <script>
-    // Wait for Botpress webchat to load
     window.addEventListener('botpress:ready', () => {
-        // Initially hide the chat widget
-        window.botpressWebChat.hide();
+        window.botpressWebChat.hide(); // Start hidden
+        let activeUsers = 0;
 
-        // Toggle chat visibility on bubble click
+        // Customize Botpress Webchat appearance
+        window.botpressWebChatConfig = {
+            botName: 'JOBS.KRD Assistant',
+            botConversationDescription: 'Your job search companion powered by JOBS.KRD',
+            composerPlaceholder: 'Ask about jobs or career tips...',
+            style: {
+                backgroundColor: '#F0F8FF', // Light blue background
+                fontFamily: 'Arial, sans-serif',
+                headerTextColor: '#1E90FF',
+                botMessageColor: '#1E90FF'
+            }
+        };
+
+        // Toggle chat bubble
         document.getElementById('chat-bubble').addEventListener('click', () => {
+            if (activeUsers >= 40) {
+                alert('Bot is busy! Please try again later.');
+                return;
+            }
             if (window.botpressWebChat.isVisible()) {
-                window.botpressWebChat.hide(); // Hide the chat
+                window.botpressWebChat.hide();
                 document.getElementById('chat-bubble').style.transform = 'scale(1)';
             } else {
-                window.botpressWebChat.show(); // Show the chat
+                window.botpressWebChat.show();
                 document.getElementById('chat-bubble').style.transform = 'scale(0.9)';
             }
         });
 
-        // Optional: Adjust bubble opacity when chat is open/closed
+        // Track active users
         window.addEventListener('botpress:webchat:visible', () => {
-            document.getElementById('chat-bubble').style.opacity = '0.5';
+            activeUsers++;
+            document.getElementById('chat-bubble').style.opacity = activeUsers >= 40 ? '0.5' : '1';
         });
         window.addEventListener('botpress:webchat:hidden', () => {
+            activeUsers--;
             document.getElementById('chat-bubble').style.opacity = '1';
+        });
+
+        // Add hover effects and tooltip
+        const bubble = document.getElementById('chat-bubble');
+        const tooltip = document.getElementById('chat-tooltip');
+        bubble.addEventListener('mouseenter', () => {
+            tooltip.style.opacity = '1';
+            tooltip.style.visibility = 'visible';
+            bubble.style.transform = 'scale(1.1)';
+            bubble.style.boxShadow = '0 6px 15px rgba(30, 144, 255, 0.5)';
+        });
+        bubble.addEventListener('mouseleave', () => {
+            tooltip.style.opacity = '0';
+            tooltip.style.visibility = 'hidden';
+            bubble.style.transform = 'scale(1)';
+            bubble.style.boxShadow = '0 4px 12px rgba(30, 144, 255, 0.3)';
         });
     });
 </script>
+
+<!-- Optional: Responsive Design for Mobile -->
+<style>
+    @media (max-width: 600px) {
+        #chat-bubble {
+            width: 50px;
+            height: 50px;
+            bottom: 10px;
+            right: 10px;
+        }
+        #chat-bubble img {
+            width: 40px;
+            height: 40px;
+        }
+    }
+</style>" alt="JOBS.KRD Logo" style="
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        border-radius: 50%;
+    ">
+    <!-- Tooltip -->
+    <span id="chat-tooltip" style="
+        position: absolute;
+        bottom: 100%;
+        right: 0;
+        background-color: #1E90FF;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 14px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s;
+    ">Chat with JOBS.KRD Bot</span>
+</div>
+
+<!-- Botpress Webchat Scripts for New Bot -->
+<script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js" defer></script>
+<script src="https://files.bpcontent.cloud/2025/08/24/09/20250824090247-FWTQM10I.js" defer></script>
+
+<!-- JavaScript to Toggle Chat and Customize -->
+<script>
+    window.addEventListener('botpress:ready', () => {
+        window.botpressWebChat.hide(); // Start hidden
+        let activeUsers = 0;
+
+        // Customize Botpress Webchat appearance
+        window.botpressWebChatConfig = {
+            botName: 'JOBS.KRD Assistant',
+            botConversationDescription: 'Your job search companion powered by JOBS.KRD',
+            composerPlaceholder: 'Ask about jobs or career tips...',
+            style: {
+                backgroundColor: '#F0F8FF', // Light blue background
+                fontFamily: 'Arial, sans-serif',
+                headerTextColor: '#1E90FF',
+                botMessageColor: '#1E90FF'
+            }
+        };
+
+        // Toggle chat bubble
+        document.getElementById('chat-bubble').addEventListener('click', () => {
+            if (activeUsers >= 40) {
+                alert('Bot is busy! Please try again later.');
+                return;
+            }
+            if (window.botpressWebChat.isVisible()) {
+                window.botpressWebChat.hide();
+                document.getElementById('chat-bubble').style.transform = 'scale(1)';
+            } else {
+                window.botpressWebChat.show();
+                document.getElementById('chat-bubble').style.transform = 'scale(0.9)';
+            }
+        });
+
+        // Track active users
+        window.addEventListener('botpress:webchat:visible', () => {
+            activeUsers++;
+            document.getElementById('chat-bubble').style.opacity = activeUsers >= 40 ? '0.5' : '1';
+        });
+        window.addEventListener('botpress:webchat:hidden', () => {
+            activeUsers--;
+            document.getElementById('chat-bubble').style.opacity = '1';
+        });
+
+        // Add hover effects and tooltip
+        const bubble = document.getElementById('chat-bubble');
+        const tooltip = document.getElementById('chat-tooltip');
+        bubble.addEventListener('mouseenter', () => {
+            tooltip.style.opacity = '1';
+            tooltip.style.visibility = 'visible';
+            bubble.style.transform = 'scale(1.1)';
+            bubble.style.boxShadow = '0 6px 15px rgba(30, 144, 255, 0.5)';
+        });
+        bubble.addEventListener('mouseleave', () => {
+            tooltip.style.opacity = '0';
+            tooltip.style.visibility = 'hidden';
+            bubble.style.transform = 'scale(1)';
+            bubble.style.boxShadow = '0 4px 12px rgba(30, 144, 255, 0.3)';
+        });
+    });
+</script>
+
+<!-- Optional: Responsive Design for Mobile -->
+<style>
+    @media (max-width: 600px) {
+        #chat-bubble {
+            width: 50px;
+            height: 50px;
+            bottom: 10px;
+            right: 10px;
+        }
+        #chat-bubble img {
+            width: 40px;
+            height: 40px;
+        }
+    }
+</style>
 </body>
 </html>
+
