@@ -584,17 +584,44 @@
     const wisdomText = document.getElementById('wisdom-text');
     const generateWisdomBtn = document.getElementById('generate-wisdom-btn');
 
-    // A list of inspirational quotes to choose from
-    const quotes = [
-        "The best way to predict the future is to create it.",
-        "Meow.",
-        "Your time is limited, don't waste it living someone else's life.",
-        "The only way to do great work is to love what you do.",
-        "Strive not to be a success, but rather to be of value.",
-        "The journey of a thousand miles begins with a single step.",
-        "What you get by achieving your goals is not as important as what you become by achieving your goals.",
-        "Don't count the days, make the days count."
-    ];
+    // --- New JavaScript for the "Wisdom" Button ---
+// A list of inspirational quotes to choose from
+const quotes = [
+    "The best way to predict the future is to create it.",
+    "Your time is limited, don't waste it living someone else's life.",
+    "The only way to do great work is to love what you do.",
+    "Strive not to be a success, but rather to be of value.",
+    "The journey of a thousand miles begins with a single step.",
+    "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+    "Don't count the days, make the days count."
+];
+
+const wisdomBtn = document.getElementById('wisdom-btn');
+
+function speak(text) {
+    // Stop any currently speaking speech
+    if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+    }
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 1; // Speed of speech
+    utterance.pitch = 1; // Pitch of the voice
+
+    // This is the key: the speak() function must be called directly from a user event.
+    speechSynthesis.speak(utterance);
+}
+
+function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    return quotes[randomIndex];
+}
+
+// Attach the function to the button click event
+wisdomBtn.addEventListener('click', () => {
+    const quote = getRandomQuote();
+    speak(quote);
+});
 
     function speak(text) {
         // Stop any currently speaking speech
@@ -630,4 +657,5 @@
     </script>
 </body>
 </html>
+
 
