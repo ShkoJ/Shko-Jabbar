@@ -1,559 +1,325 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shko Jabbar</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <link rel="icon" type="image/jpeg" href="small_cat.jpeg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shko Jabbar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="icon" type="image/jpeg" href="small_cat.jpeg">
 </head>
 <body>
-    <div class="loading"></div>
-    <header>
-        <nav>
-            <h1 class="site-logo">
-                <span class="logo-text">Shko Jabbar</span>
-            </h1>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="loading"></div>
+    <header>
+        <nav>
+            <h1 class="site-logo">
+                <span class="logo-text">Shko Jabbar</span>
+            </h1>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <main>
-        <section id="intro">
-            <div class="intro-content">
-                <h2>Hello, I'm Shko</h2>
-                <p class="typing-text">Software Engineer</p>
-                <p class="subtitle">Studying at University of Kurdistan Hawler, expected B.S. in Software Engineering 2026</p>
-            </div>
-        </section>
+    <main>
+        <section id="intro">
+            <div class="intro-content">
+                <h2>Hello, I'm Shko</h2>
+                <p class="typing-text">Software Engineer</p>
+                <p class="subtitle">Studying at University of Kurdistan Hawler, expected B.S. in Software Engineering 2026</p>
+            </div>
+        </section>
 
-        <section id="about">
-            <h2>About Me</h2>
-            <div class="about-cv-flex" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                <div class="about-text" style="flex: 2; min-width: 220px; text-align: left; max-width: 400px;">
-                    <p class="highlight">Software Engineer and Data Scientist.</p>
-                    <p>Experienced in full-stack development, data science, and machine learning. Skilled in Python, Pandas, TensorFlow, and web technologies.</p>
-                </div>
-                <div style="flex: 1; min-width: 180px; text-align: right;">
-                    <a href="Shko Jabbar - CV.pdf" download class="btn">Download My CV</a>
-                </div>
-            </div>
-        </section>
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-cv-flex" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div class="about-text" style="flex: 2; min-width: 220px; text-align: left; max-width: 400px;">
+                    <p class="highlight">Software Engineer and Data Scientist.</p>
+                    <p>Experienced in full-stack development, data science, and machine learning. Skilled in Python, Pandas, TensorFlow, and web technologies.</p>
+                </div>
+                <div style="flex: 1; min-width: 180px; text-align: right;">
+                    <a href="Shko Jabbar - CV.pdf" download class="btn">Download My CV</a>
+                </div>
+            </div>
+        </section>
 
-        <section id="skills">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Programming Languages</h3>
-                    <ul class="skill-items two-columns">
-                        <li>Python</li>
-                        <li>JavaScript</li>
-                        <li>R</li>
-                        <li>Java</li>
-                        <li>C</li>
-                        <li>C++</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Data Science & ML</h3>
-                    <ul class="skill-items two-columns">
-                        <li>Pandas</li>
-                        <li>NumPy</li>
-                        <li>TensorFlow</li>
-                        <li>Scikit-learn</li>
-                        <li>EDA</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Web Development</h3>
-                    <ul class="skill-items two-columns">
-                        <li>HTML5</li>
-                        <li>CSS</li>
-                        <li>JavaScript</li>
-                        <li>Django</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-items two-columns">
+                        <li>Python</li>
+                        <li>JavaScript</li>
+                        <li>R</li>
+                        <li>Java</li>
+                        <li>C</li>
+                        <li>C++</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Science & ML</h3>
+                    <ul class="skill-items two-columns">
+                        <li>Pandas</li>
+                        <li>NumPy</li>
+                        <li>TensorFlow</li>
+                        <li>Scikit-learn</li>
+                        <li>EDA</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Web Development</h3>
+                    <ul class="skill-items two-columns">
+                        <li>HTML5</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>Django</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="project-grid">
-                <!-- Heart Disease App -->
-                <div class="project-card">
-                    <h3>Heart Disease Prediction App</h3>
-                    <p>A web app predicting heart disease risk with data analysis, visualization, and machine learning.</p>
-                    <a href="https://heart-disease-appp.streamlit.app/" class="btn">Try the App</a>
-                    <a href="https://github.com/ShkoJ/Heart-Disease-Classification-Project" class="btn btn-secondary">View Code on GitHub</a>
-                </div>
-                <!-- Book Project -->
-                <div class="project-card">
-                    <h3>R4NTR Book</h3>
-                    <p>Co-authoring a beginner's guide to R programming with my professor, currently in early stages.</p>
-                    <a href="https://github.com/polla-fattah/R4NTR" class="btn btn-secondary">View on GitHub</a>
-                </div>
-                <!-- Dog Breed Classifier -->
-                <div class="project-card">
-                    <h3>Dog Breed Classification</h3>
-                    <p>A TensorFlow model trained in Google Colab to classify dog breeds from images.</p>
-                    <a href="https://github.com/ShkoJ/ShkoJ-Dog-Breed-Classification-Project" class="btn btn-secondary">View Code on GitHub</a>
-                </div>
-                <!-- Virtual Desktop Assistant -->
-                <div class="project-card">
-                    <h3>Virtual Desktop Assistant</h3>
-                    <p>Computer control system using hand gestures via webcam for volume control and mouse movement.</p>
-                    <a href="https://youtu.be/igFPu53AaEc" class="btn">See Demo</a>
-                    <a href="https://github.com/ShkoJ/virtual-desktop-assistant" class="btn btn-secondary">View Code on GitHub</a>
-                </div>
-                <!-- Diabetes Prediction Project -->
-                <div class="project-card hidden-project-card">
-                    <h3>Diabetes Prediction Project</h3>
-                    <p>End-to-end machine learning solution for diabetes prediction in women using medical diagnostic measurements with interactive GUI.</p>
-                    <a href="https://github.com/ShkoJ/diabetes-prediction-project" class="btn btn-secondary">View Code on GitHub</a>
-                </div>
-                <!-- Bulldozer Price Prediction -->
-                <div class="project-card hidden-project-card">
-                    <h3>Bulldozer Price Prediction</h3>
-                    <p>A machine learning model to predict bulldozer sale prices using Kaggle competition data.</p>
-                    <a href="https://github.com/ShkoJ/bulldozer-price-prediction-project" class="btn btn-secondary">View Code on GitHub</a>
-                </div>
-                <!-- CO2 App -->
-                <div class="project-card hidden-project-card">
-                    <h3>CO2 Emission Prediction Model</h3>
-                    <p>A Tkinter-based Machine Learning model that predicts CO2 emissions using Linear Regression.</p>
-                    <a href="https://github.com/ShkoJ/CO2-emission-prediction-model-" class="btn btn-secondary">View Code on GitHub</a>
-                </div>
-            </div>
-            <div style="text-align:center; margin-top:1.5rem;">
-                <button id="show-more-projects" class="btn btn-secondary" onclick="toggleProjects()">Show More</button>
-            </div>
-        </section>
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                                <div class="project-card">
+                    <h3>Heart Disease Prediction App</h3>
+                    <p>A web app predicting heart disease risk with data analysis, visualization, and machine learning.</p>
+                    <a href="https://heart-disease-appp.streamlit.app/" class="btn">Try the App</a>
+                    <a href="https://github.com/ShkoJ/Heart-Disease-Classification-Project" class="btn btn-secondary">View Code on GitHub</a>
+                </div>
+                                <div class="project-card">
+                    <h3>R4NTR Book</h3>
+                    <p>Co-authoring a beginner's guide to R programming with my professor, currently in early stages.</p>
+                    <a href="https://github.com/polla-fattah/R4NTR" class="btn btn-secondary">View on GitHub</a>
+                </div>
+                                <div class="project-card">
+                    <h3>Dog Breed Classification</h3>
+                    <p>A TensorFlow model trained in Google Colab to classify dog breeds from images.</p>
+                    <a href="https://github.com/ShkoJ/ShkoJ-Dog-Breed-Classification-Project" class="btn btn-secondary">View Code on GitHub</a>
+                </div>
+                                <div class="project-card">
+                    <h3>Virtual Desktop Assistant</h3>
+                    <p>Computer control system using hand gestures via webcam for volume control and mouse movement.</p>
+                    <a href="https://youtu.be/igFPu53AaEc" class="btn">See Demo</a>
+                    <a href="https://github.com/ShkoJ/virtual-desktop-assistant" class="btn btn-secondary">View Code on GitHub</a>
+                </div>
+                                <div class="project-card hidden-project-card">
+                    <h3>Diabetes Prediction Project</h3>
+                    <p>End-to-end machine learning solution for diabetes prediction in women using medical diagnostic measurements with interactive GUI.</p>
+                    <a href="https://github.com/ShkoJ/diabetes-prediction-project" class="btn btn-secondary">View Code on GitHub</a>
+                </div>
+                                <div class="project-card hidden-project-card">
+                    <h3>Bulldozer Price Prediction</h3>
+                    <p>A machine learning model to predict bulldozer sale prices using Kaggle competition data.</p>
+                    <a href="https://github.com/ShkoJ/bulldozer-price-prediction-project" class="btn btn-secondary">View Code on GitHub</a>
+                </div>
+                                <div class="project-card hidden-project-card">
+                    <h3>CO2 Emission Prediction Model</h3>
+                    <p>A Tkinter-based Machine Learning model that predicts CO2 emissions using Linear Regression.</p>
+                    <a href="https://github.com/ShkoJ/CO2-emission-prediction-model-" class="btn btn-secondary">View Code on GitHub</a>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:1.5rem;">
+                <button id="show-more-projects" class="btn btn-secondary" onclick="toggleProjects()">Show More</button>
+            </div>
+        </section>
 
-        <!-- Work Experience -->
-        <section id="work">
-            <h2>Work Experience</h2>
-            <ul class="work-list">
-                <li class="work-card">
-                  <div class="work-card-header">
-                    <strong>Kurdistan Foundation - Jobs.KRD</strong>
-                    <span class="work-duration">Jun - Jul 2025</span>
-                  </div>
-                  <span class="work-title">Website Tester – Freelance</span>
-                  <span class="work-desc">Part of the official testing team for the Jobs.KRD website, identified critical bugs and usability issues to optimize site performance.</span>
-                </li>
-                <li class="work-card">
-                  <div class="work-card-header">
-                    <strong>University of Kurdistan Hawler (UKH)</strong>
-                    <span class="work-duration">May - June 2025</span>
-                  </div>
-                  <span class="work-title">Library Management Tester – Internship</span>
-                  <span class="work-desc">Part of the official testing team for UKH's newly implemented library system, identifying critical UX bugs and analyzing usage data to optimize the digital library interface.</span>
-                </li>
-                <li class="work-card">
-                  <div class="work-card-header">
-                    <strong>Artificial Intelligence and Innovation Center (AIIC)</strong>
-                    <span class="work-duration">Feb - Mar 2025</span>
-                  </div>
-                  <span class="work-title">Data Scientist – Internship</span>
-                  <span class="work-desc">Conducted data analysis with Python and Pandas to identify trends and deliver actionable insights for AI projects.</span>
-                </li>
+                <section id="work">
+            <h2>Work Experience</h2>
+            <ul class="work-list">
+                <li class="work-card">
+                  <div class="work-card-header">
+                    <strong>Kurdistan Foundation - Jobs.KRD</strong>
+                    <span class="work-duration">Jun - Jul 2025</span>
+                  </div>
+                  <span class="work-title">Website Tester – Freelance</span>
+                  <span class="work-desc">Part of the official testing team for the Jobs.KRD website, identified critical bugs and usability issues to optimize site performance.</span>
+                </li>
+                <li class="work-card">
+                  <div class="work-card-header">
+                    <strong>University of Kurdistan Hawler (UKH)</strong>
+                    <span class="work-duration">May - June 2025</span>
+                  </div>
+                  <span class="work-title">Library Management Tester – Internship</span>
+                  <span class="work-desc">Part of the official testing team for UKH's newly implemented library system, identifying critical UX bugs and analyzing usage data to optimize the digital library interface.</span>
+                </li>
+                <li class="work-card">
+                  <div class="work-card-header">
+                    <strong>Artificial Intelligence and Innovation Center (AIIC)</strong>
+                    <span class="work-duration">Feb - Mar 2025</span>
+                  </div>
+                  <span class="work-title">Data Scientist – Internship</span>
+                  <span class="work-desc">Conducted data analysis with Python and Pandas to identify trends and deliver actionable insights for AI projects.</span>
+                </li>
                 <li class="work-card hidden-work-card">
-                  <div class="work-card-header">
-                    <strong>FiveOneLabs and OrangeCorners Erbil</strong>
-                    <span class="work-duration">Aug - Dec 2024</span>
-                  </div>
-                  <span class="work-title">Participant – Full-Time</span>
-                  <span class="work-desc">Designed and prototyped a mental health app, integrating data visualization for user insights.</span>
-                </li>
-                <li class="work-card hidden-work-card">
-                  <div class="work-card-header">
-                    <strong>AL Judi</strong>
-                    <span class="work-duration">Jul - Sep 2023</span>
-                  </div>
-                  <span class="work-title">IT Specialist – Full-Time</span>
-                  <span class="work-desc">Oversaw IT operations, troubleshooting systems and maintaining network reliability.</span>
-                </li>
-                <li class="work-card hidden-work-card">
-                  <div class="work-card-header">
-                    <strong>Rawatan</strong>
-                    <span class="work-duration">Jun - Jul 2024</span>
-                  </div>
-                  <span class="work-title">Marketing – Freelance</span>
-                  <span class="work-desc">Produced marketing campaigns and high-quality photography to boost brand visibility.</span>
-                </li>
-                <li class="work-card hidden-work-card">
-                  <div class="work-card-header">
-                    <strong>WAVE Agency</strong>
-                    <span class="work-duration">Feb - Dec 2024</span>
-                  </div>
-                  <span class="work-title">Co-Founder – Full-Time</span>
-                  <span class="work-desc">Directed marketing strategies and client outreach for a growing agency.</span>
-                </li>
-                <li class="work-card hidden-work-card">
-                  <div class="work-card-header">
-                    <strong>Daroon NGO</strong>
-                    <span class="work-duration">Jul 2023 - Jul 2024</span>
-                  </div>
-                  <span class="work-title">Co-Founder – Full-Time</span>
-                  <span class="work-desc">Led initiatives to raise awareness on drug abuse, engaging the community through events.</span>
-                </li>
-            </ul>
-            <div style="text-align:center; margin-top:1.5rem;">
-                <button id="show-more-work" class="btn btn-secondary" onclick="toggleWork()">Show More</button>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>Get in Touch</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p><i class="fas fa-envelope"></i> shko.jabbarr@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> +964 751 733 8448</p>
-                    <div class="social-links">
-                        <a href="https://github.com/ShkoJ" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/shko-jabbar-72686727b/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <div class="work-card-header">
+                        <strong>Kurdistan Foundation</strong>
+                        <span class="work-duration">Aug - Present</span>
                     </div>
-                    <div class="cat-container">
-                        <div id="cat-scene">
-                            <img src="small_cat.jpeg" alt="Cute cat" class="cat-image">
-                        </div>
-                        <div class="cat-controls">
-                            <button id="pet-cat" class="cat-action-btn">Pet Cat</button>
-                        </div>
+                    <span class="work-title">IT & Automation</span>
+                    <span class="work-desc">Currently engaged in IT and automation tasks.</span>
+                </li>
+                <li class="work-card hidden-work-card">
+                    <div class="work-card-header">
+                        <strong>Revge</strong>
+                        <span class="work-duration">Aug - Present</span>
                     </div>
-                </div>
-                <form id="contact-form" class="contact-form" enctype="multipart/form-data" style="display:none;">
-                    <!-- DO NOT TOUCH THIS PART OF THE CODE -->
-                    <div class="form-group" style="display:none;">
-                        <label for="attachment">Attachment</label>
-                        <input type="file" id="attachment" name="attachment" class="file-input">
-                        <small class="file-info">Max file size: 5MB</small>
-                    </div>
-                    <button type="submit" class="btn" id="submit-btn" style="display:none;">
-                        <span class="btn-text">Send Message</span>
-                        <span class="btn-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Sending...
-                        </span>
-                    </button>
-                    <div id="form-status" style="margin-top: 1rem; display: none;"></div>
-                    <!-- DO NOT TOUCH THIS PART OF THE CODE -->
-                    <button type="submit" class="btn" style="display:none;">Send Message</button>
-                </form>
-            </div>
-        </section>
-    </main>
+                    <span class="work-title">Data Scientist</span>
+                    <span class="work-desc">Currently working as a Data Scientist.</span>
+                </li>
+                <li class="work-card hidden-work-card">
+                  <div class="work-card-header">
+                    <strong>FiveOneLabs and OrangeCorners Erbil</strong>
+                    <span class="work-duration">Aug - Dec 2024</span>
+                  </div>
+                  <span class="work-title">Participant – Full-Time</span>
+                  <span class="work-desc">Designed and prototyped a mental health app, integrating data visualization for user insights.</span>
+                </li>
+                <li class="work-card hidden-work-card">
+                  <div class="work-card-header">
+                    <strong>AL Judi</strong>
+                    <span class="work-duration">Jul - Sep 2023</span>
+                  </div>
+                  <span class="work-title">IT Specialist – Full-Time</span>
+                  <span class="work-desc">Oversaw IT operations, troubleshooting systems and maintaining network reliability.</span>
+                </li>
+                <li class="work-card hidden-work-card">
+                  <div class="work-card-header">
+                    <strong>Rawatan</strong>
+                    <span class="work-duration">Jun - Jul 2024</span>
+                  </div>
+                  <span class="work-title">Marketing – Freelance</span>
+                  <span class="work-desc">Produced marketing campaigns and high-quality photography to boost brand visibility.</span>
+                </li>
+                <li class="work-card hidden-work-card">
+                  <div class="work-card-header">
+                    <strong>WAVE Agency</strong>
+                    <span class="work-duration">Feb - Dec 2024</span>
+                  </div>
+                  <span class="work-title">Co-Founder – Full-Time</span>
+                  <span class="work-desc">Directed marketing strategies and client outreach for a growing agency.</span>
+                </li>
+                <li class="work-card hidden-work-card">
+                  <div class="work-card-header">
+                    <strong>Daroon NGO</strong>
+                    <span class="work-duration">Jul 2023 - Jul 2024</span>
+                  </div>
+                  <span class="work-title">Co-Founder – Full-Time</span>
+                  <span class="work-desc">Led initiatives to raise awareness on drug abuse, engaging the community through events.</span>
+                </li>
+            </ul>
+            <div style="text-align:center; margin-top:1.5rem;">
+                <button id="show-more-work" class="btn btn-secondary" onclick="toggleWork()">Show More</button>
+            </div>
+        </section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#work">Work</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <h3>Connect</h3>
-                <div class="social-links">
-                    <a href="https://github.com/ShkoJ" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/shko-jabbar-72686727b/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Shko Jabbar. All rights reserved.</p>
-        </div>
-    </footer>
+        <section id="contact">
+            <h2>Get in Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-envelope"></i> shko.jabbarr@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +964 751 733 8448</p>
+                    <div class="social-links">
+                        <a href="https://github.com/ShkoJ" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/shko-jabbar-72686727b/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <div class="cat-container">
+                        <div id="cat-scene">
+                            <img src="small_cat.jpeg" alt="Cute cat" class="cat-image">
+                        </div>
+                        <div class="cat-controls">
+                            <button id="pet-cat" class="cat-action-btn">Pet Cat</button>
+                        </div>
+                    </div>
+                </div>
+                <form id="contact-form" class="contact-form" enctype="multipart/form-data" style="display:none;">
+                                        <div class="form-group" style="display:none;">
+                        <label for="attachment">Attachment</label>
+                        <input type="file" id="attachment" name="attachment" class="file-input">
+                        <small class="file-info">Max file size: 5MB</small>
+                    </div>
+                    <button type="submit" class="btn" id="submit-btn" style="display:none;">
+                        <span class="btn-text">Send Message</span>
+                        <span class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> Sending...
+                        </span>
+                    </button>
+                    <div id="form-status" style="margin-top: 1rem; display: none;"></div>
+                                        <button type="submit" class="btn" style="display:none;">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-    <script src="script.js"></script>
-    <script>
-    function toggleProjects() {
-        const extraCards = document.querySelectorAll('.project-card.hidden-project-card, .project-card:not(.hidden-project-card):nth-child(n+5)');
-        const btn = document.getElementById('show-more-projects');
-        const anyHidden = Array.from(extraCards).some(card => card.classList.contains('hidden-project-card'));
-        if (anyHidden) {
-            extraCards.forEach(card => card.classList.remove('hidden-project-card'));
-            btn.textContent = 'Show Less';
-        } else {
-            extraCards.forEach(card => card.classList.add('hidden-project-card'));
-            btn.textContent = 'Show More';
-        }
-    }
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#work">Work</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="https://github.com/ShkoJ" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/shko-jabbar-72686727b/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Shko Jabbar. All rights reserved.</p>
+        </div>
+    </footer>
 
-    function toggleWork() {
-        const extraWorkCards = document.querySelectorAll('.work-card.hidden-work-card, .work-card:not(.hidden-work-card):nth-child(n+4)');
-        const btn = document.getElementById('show-more-work');
-        const anyHidden = Array.from(extraWorkCards).some(card => card.classList.contains('hidden-work-card'));
-        if (anyHidden) {
-            extraWorkCards.forEach(card => card.classList.remove('hidden-work-card'));
-            btn.textContent = 'Show Less';
-        } else {
-            extraWorkCards.forEach(card => card.classList.add('hidden-work-card'));
-            btn.textContent = 'Show More';
-        }
-    }
-    </script>
-    <script>
-      // Automatically set zoom to 80% on page load
-      document.addEventListener('DOMContentLoaded', function() {
-        document.body.style.zoom = '80%';
-      });
-    </script>
-<!-- Chat Bubble with JOBS.KRD Logo -->
-<div id="chat-bubble" style="
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 70px;
-    height: 70px;
-    background-color: #1E90FF; /* Dodger Blue for a professional look */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3); /* Softer shadow */
-    z-index: 1000;
-    transition: all 0.3s ease; /* Smooth transition for hover and click */
-">
-    <img src="<!-- Chat Bubble with JOBS.KRD Logo -->
-<div id="chat-bubble" style="
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 70px;
-    height: 70px;
-    background-color: #1E90FF; /* Dodger Blue for a professional look */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3); /* Softer shadow */
-    z-index: 1000;
-    transition: all 0.3s ease; /* Smooth transition for hover and click */
-">
-    <img src="https://example.com/jobs-krd-logo.png" alt="JOBS.KRD Logo" style="
-        width: 60px;
-        height: 60px;
-        object-fit: contain;
-        border-radius: 50%;
-    ">
-    <!-- Tooltip -->
-    <span id="chat-tooltip" style="
-        position: absolute;
-        bottom: 100%;
-        right: 0;
-        background-color: #1E90FF;
-        color: white;
-        padding: 5px 10px;
-        border-radius: 4px;
-        font-size: 14px;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.2s;
-    ">Chat with JOBS.KRD Bot</span>
-</div>
+    <script src="script.js"></script>
+    <script>
+    function toggleProjects() {
+        const extraCards = document.querySelectorAll('.project-card.hidden-project-card, .project-card:not(.hidden-project-card):nth-child(n+5)');
+        const btn = document.getElementById('show-more-projects');
+        const anyHidden = Array.from(extraCards).some(card => card.classList.contains('hidden-project-card'));
+        if (anyHidden) {
+            extraCards.forEach(card => card.classList.remove('hidden-project-card'));
+            btn.textContent = 'Show Less';
+        } else {
+            extraCards.forEach(card => card.classList.add('hidden-project-card'));
+            btn.textContent = 'Show More';
+        }
+    }
 
-<!-- Botpress Webchat Scripts for New Bot -->
-<script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js" defer></script>
-<script src="https://files.bpcontent.cloud/2025/08/24/09/20250824090247-FWTQM10I.js" defer></script>
-
-<!-- JavaScript to Toggle Chat and Customize -->
-<script>
-    window.addEventListener('botpress:ready', () => {
-        window.botpressWebChat.hide(); // Start hidden
-        let activeUsers = 0;
-
-        // Customize Botpress Webchat appearance
-        window.botpressWebChatConfig = {
-            botName: 'JOBS.KRD Assistant',
-            botConversationDescription: 'Your job search companion powered by JOBS.KRD',
-            composerPlaceholder: 'Ask about jobs or career tips...',
-            style: {
-                backgroundColor: '#F0F8FF', // Light blue background
-                fontFamily: 'Arial, sans-serif',
-                headerTextColor: '#1E90FF',
-                botMessageColor: '#1E90FF'
-            }
-        };
-
-        // Toggle chat bubble
-        document.getElementById('chat-bubble').addEventListener('click', () => {
-            if (activeUsers >= 40) {
-                alert('Bot is busy! Please try again later.');
-                return;
-            }
-            if (window.botpressWebChat.isVisible()) {
-                window.botpressWebChat.hide();
-                document.getElementById('chat-bubble').style.transform = 'scale(1)';
-            } else {
-                window.botpressWebChat.show();
-                document.getElementById('chat-bubble').style.transform = 'scale(0.9)';
-            }
-        });
-
-        // Track active users
-        window.addEventListener('botpress:webchat:visible', () => {
-            activeUsers++;
-            document.getElementById('chat-bubble').style.opacity = activeUsers >= 40 ? '0.5' : '1';
-        });
-        window.addEventListener('botpress:webchat:hidden', () => {
-            activeUsers--;
-            document.getElementById('chat-bubble').style.opacity = '1';
-        });
-
-        // Add hover effects and tooltip
-        const bubble = document.getElementById('chat-bubble');
-        const tooltip = document.getElementById('chat-tooltip');
-        bubble.addEventListener('mouseenter', () => {
-            tooltip.style.opacity = '1';
-            tooltip.style.visibility = 'visible';
-            bubble.style.transform = 'scale(1.1)';
-            bubble.style.boxShadow = '0 6px 15px rgba(30, 144, 255, 0.5)';
-        });
-        bubble.addEventListener('mouseleave', () => {
-            tooltip.style.opacity = '0';
-            tooltip.style.visibility = 'hidden';
-            bubble.style.transform = 'scale(1)';
-            bubble.style.boxShadow = '0 4px 12px rgba(30, 144, 255, 0.3)';
-        });
-    });
-</script>
-
-<!-- Optional: Responsive Design for Mobile -->
-<style>
-    @media (max-width: 600px) {
-        #chat-bubble {
-            width: 50px;
-            height: 50px;
-            bottom: 10px;
-            right: 10px;
-        }
-        #chat-bubble img {
-            width: 40px;
-            height: 40px;
-        }
-    }
-</style>" alt="JOBS.KRD Logo" style="
-        width: 60px;
-        height: 60px;
-        object-fit: contain;
-        border-radius: 50%;
-    ">
-    <!-- Tooltip -->
-    <span id="chat-tooltip" style="
-        position: absolute;
-        bottom: 100%;
-        right: 0;
-        background-color: #1E90FF;
-        color: white;
-        padding: 5px 10px;
-        border-radius: 4px;
-        font-size: 14px;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.2s;
-    ">Chat with JOBS.KRD Bot</span>
-</div>
-
-<!-- Botpress Webchat Scripts for New Bot -->
-<script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js" defer></script>
-<script src="https://files.bpcontent.cloud/2025/08/24/09/20250824090247-FWTQM10I.js" defer></script>
-
-<!-- JavaScript to Toggle Chat and Customize -->
-<script>
-    window.addEventListener('botpress:ready', () => {
-        window.botpressWebChat.hide(); // Start hidden
-        let activeUsers = 0;
-
-        // Customize Botpress Webchat appearance
-        window.botpressWebChatConfig = {
-            botName: 'JOBS.KRD Assistant',
-            botConversationDescription: 'Your job search companion powered by JOBS.KRD',
-            composerPlaceholder: 'Ask about jobs or career tips...',
-            style: {
-                backgroundColor: '#F0F8FF', // Light blue background
-                fontFamily: 'Arial, sans-serif',
-                headerTextColor: '#1E90FF',
-                botMessageColor: '#1E90FF'
-            }
-        };
-
-        // Toggle chat bubble
-        document.getElementById('chat-bubble').addEventListener('click', () => {
-            if (activeUsers >= 40) {
-                alert('Bot is busy! Please try again later.');
-                return;
-            }
-            if (window.botpressWebChat.isVisible()) {
-                window.botpressWebChat.hide();
-                document.getElementById('chat-bubble').style.transform = 'scale(1)';
-            } else {
-                window.botpressWebChat.show();
-                document.getElementById('chat-bubble').style.transform = 'scale(0.9)';
-            }
-        });
-
-        // Track active users
-        window.addEventListener('botpress:webchat:visible', () => {
-            activeUsers++;
-            document.getElementById('chat-bubble').style.opacity = activeUsers >= 40 ? '0.5' : '1';
-        });
-        window.addEventListener('botpress:webchat:hidden', () => {
-            activeUsers--;
-            document.getElementById('chat-bubble').style.opacity = '1';
-        });
-
-        // Add hover effects and tooltip
-        const bubble = document.getElementById('chat-bubble');
-        const tooltip = document.getElementById('chat-tooltip');
-        bubble.addEventListener('mouseenter', () => {
-            tooltip.style.opacity = '1';
-            tooltip.style.visibility = 'visible';
-            bubble.style.transform = 'scale(1.1)';
-            bubble.style.boxShadow = '0 6px 15px rgba(30, 144, 255, 0.5)';
-        });
-        bubble.addEventListener('mouseleave', () => {
-            tooltip.style.opacity = '0';
-            tooltip.style.visibility = 'hidden';
-            bubble.style.transform = 'scale(1)';
-            bubble.style.boxShadow = '0 4px 12px rgba(30, 144, 255, 0.3)';
-        });
-    });
-</script>
-
-<!-- Optional: Responsive Design for Mobile -->
-<style>
-    @media (max-width: 600px) {
-        #chat-bubble {
-            width: 50px;
-            height: 50px;
-            bottom: 10px;
-            right: 10px;
-        }
-        #chat-bubble img {
-            width: 40px;
-            height: 40px;
-        }
-    }
-</style>
+    function toggleWork() {
+        const extraWorkCards = document.querySelectorAll('.work-card.hidden-work-card, .work-card:not(.hidden-work-card):nth-child(n+4)');
+        const btn = document.getElementById('show-more-work');
+        const anyHidden = Array.from(extraWorkCards).some(card => card.classList.contains('hidden-work-card'));
+        if (anyHidden) {
+            extraWorkCards.forEach(card => card.classList.remove('hidden-work-card'));
+            btn.textContent = 'Show Less';
+        } else {
+            extraWorkCards.forEach(card => card.classList.add('hidden-work-card'));
+            btn.textContent = 'Show More';
+        }
+    }
+    </script>
+    <script>
+      // Automatically set zoom to 80% on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.style.zoom = '80%';
+      });
+    </script>
 </body>
 </html>
-
