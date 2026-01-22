@@ -6,7 +6,7 @@
     <title>Shko Jabbar</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link rel="icon" type="image/jpeg" href="small_cat.jpeg">
 </head>
@@ -31,7 +31,9 @@
         <section id="intro">
             <div class="intro-content">
                 <span class="greeting">Hello, I'm Shko</span>
-                <h2 class="typing-text">Software Engineer</h2>
+                <div class="typing-container">
+                    <h2 class="typing-text">Software Engineer</h2>
+                </div>
                 <p class="subtitle">B.S. Software Engineering (2026) & Data Scientist based in Erbil.</p>
                 <div class="social-hero">
                     <a href="https://github.com/ShkoJ" target="_blank"><i class="fab fa-github"></i></a>
@@ -45,11 +47,11 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-card">
                 <div class="about-text">
-                    <p class="highlight">Solving complex problems with data and design.</p>
-                    <p>I am a final-year Software Engineering student with a passion for building full-stack applications and deploying machine learning models. Whether it's optimizing business operations or analyzing data trends, I focus on delivering clean, efficient solutions.</p>
+                    <p class="highlight">I like Software and Consulting.</p>
+                    <p>I focus on building efficient digital solutions and analyzing data to help businesses grow.</p>
                 </div>
                 <div class="cv-container">
-                    <a href="Shko Jabbar - CV.pdf" download class="btn btn-primary"><i class="fas fa-download"></i> Download CV</a>
+                    <a href="Shko Jabbar - CV.pdf" download class="btn btn-sm btn-outline"><i class="fas fa-download"></i> Download CV</a>
                 </div>
             </div>
         </section>
@@ -93,7 +95,7 @@
         </section>
 
         <section id="projects">
-            <h2 class="section-title">Featured Projects</h2>
+            <h2 class="section-title">Projects</h2>
             
             <div class="filter-container">
                 <button class="filter-btn active" data-filter="all">All</button>
@@ -105,7 +107,7 @@
                 <div class="project-card" data-category="web">
                     <div class="card-badge">Start-up</div>
                     <h3>Artisan Perfumes</h3>
-                    <p>Full e-commerce platform for a perfume business. Handles inventory, pricing, and multi-brand filtering.</p>
+                    <p>Full e-commerce platform. Handles inventory, pricing, and multi-brand filtering.</p>
                     <div class="links">
                         <a href="https://artisan-perfume-hard.vercel.app/" target="_blank" class="btn btn-sm">Visit Site</a>
                     </div>
@@ -114,33 +116,25 @@
                 <div class="project-card" data-category="web">
                     <div class="card-badge">Productivity</div>
                     <h3>Job Task Manager</h3>
-                    <p>A specialized note-taking and task-tracking application designed for professional workflows.</p>
+                    <p>A specialized note-taking and task-tracking application for professional workflows.</p>
                     <div class="links">
                         <a href="https://note-silk-mu.vercel.app/" target="_blank" class="btn btn-sm">Visit App</a>
                     </div>
                 </div>
 
                 <div class="project-card" data-category="web">
-                    <h3>Internal Meeting Booker</h3>
-                    <p>Booking system managing 20+ companies. Prevents double-booking and manages time slots.</p>
+                    <h3>Volunteer.Krd Landing Page</h3>
+                    <p>Mobile-optimized landing page for the Volunteer Kurdistan initiative.</p>
                     <div class="links">
-                        <span class="btn btn-sm btn-locked"><i class="fas fa-lock"></i> Internal (Locked)</span>
+                        <a href="https://volunteer-krd-landing-page-informat.vercel.app/" target="_blank" class="btn btn-sm">Visit Site</a>
                     </div>
                 </div>
 
                 <div class="project-card" data-category="web">
                     <h3>Warehouse Management</h3>
-                    <p>Internal system for tracking stock levels, shipments, and inventory movement.</p>
+                    <p>Internal system for tracking stock levels and shipments. (Pass: Zxzx1212zxzX)</p>
                     <div class="links">
-                        <a href="https://github.com/ShkoJ/Warehouse-Management-system" target="_blank" class="btn btn-sm btn-outline">GitHub</a>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="web">
-                    <h3>Volunteer.Krd Landing</h3>
-                    <p>Mobile-optimized landing page for the Volunteer Kurdistan initiative.</p>
-                    <div class="links">
-                        <a href="https://github.com/ShkoJ/Volunteer.Krd-Landing-Page" target="_blank" class="btn btn-sm btn-outline">GitHub</a>
+                        <a href="https://shkoj.github.io/Warehouse-Management-system/" target="_blank" class="btn btn-sm">Visit Site</a>
                     </div>
                 </div>
 
@@ -149,6 +143,7 @@
                     <p>Educational visualizer for CS students to understand CPU scheduling algorithms.</p>
                     <div class="links">
                         <a href="https://shkoj.github.io/Round-Robin-Scheduling/" target="_blank" class="btn btn-sm">Live Demo</a>
+                        <a href="https://github.com/ShkoJ/Round-Robin-Scheduling" target="_blank" class="btn btn-sm btn-outline">GitHub</a>
                     </div>
                 </div>
 
@@ -162,14 +157,6 @@
                 </div>
 
                 <div class="project-card" data-category="ai">
-                    <h3>Dog Breed Classifier</h3>
-                    <p>Deep Learning model trained to classify dog breeds from images.</p>
-                    <div class="links">
-                        <a href="https://github.com/ShkoJ/ShkoJ-Dog-Breed-Classification-Project" target="_blank" class="btn btn-sm btn-outline">GitHub</a>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="ai">
                     <h3>Virtual Desktop Assistant</h3>
                     <p>Gesture control system for mouse and volume using computer vision.</p>
                     <div class="links">
@@ -178,13 +165,38 @@
                     </div>
                 </div>
 
-                 <div class="project-card hidden-project-card" data-category="ai">
+                <div class="project-card" data-category="ai">
+                    <h3>R4NTR Book</h3>
+                    <p>Co-authoring a beginner's guide to R programming with my professor.</p>
+                    <div class="links">
+                        <a href="https://github.com/polla-fattah/R4NTR" target="_blank" class="btn btn-sm btn-outline">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web">
+                    <h3>Internal Meeting Booker</h3>
+                    <p>Booking system managing 20+ companies. Prevents double-booking.</p>
+                    <div class="links">
+                        <span class="btn btn-sm btn-locked"><i class="fas fa-lock"></i> Locked</span>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ai">
+                    <h3>Dog Breed Classifier</h3>
+                    <p>Deep Learning model trained to classify dog breeds from images.</p>
+                    <div class="links">
+                        <a href="https://github.com/ShkoJ/ShkoJ-Dog-Breed-Classification-Project" target="_blank" class="btn btn-sm btn-outline">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card hidden-project-card" data-category="ai">
                     <h3>Diabetes Prediction</h3>
                     <p>ML solution for diabetes prediction with interactive GUI.</p>
                     <div class="links">
                         <a href="https://github.com/ShkoJ/diabetes-prediction-project" target="_blank" class="btn btn-sm btn-outline">GitHub</a>
                     </div>
                 </div>
+                
                 <div class="project-card hidden-project-card" data-category="ai">
                     <h3>Bulldozer Price AI</h3>
                     <p>Predicting bulldozer sale prices using Kaggle competition data.</p>
@@ -206,7 +218,7 @@
                     <div class="article-icon"><i class="fab fa-medium"></i></div>
                     <div class="article-content">
                         <h3>Read my articles on Medium</h3>
-                        <p>I write about Data Science, Tech, and my journey in Software Engineering. Check out my latest stories.</p>
+                        <p>I write about Data Science, Tech, and my journey in Software Engineering.</p>
                     </div>
                     <div class="article-arrow"><i class="fas fa-arrow-right"></i></div>
                 </a>
