@@ -37,40 +37,85 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     typeText();
 
-    // --- Filter Logic ---
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    // ==========================================
+    // --- PROJECT FILTERING & LIMIT LOGIC ---
+    // ==========================================
     const projectCards = document.querySelectorAll('.project-grid .project-card');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const viewMoreBtn = document.getElementById('toggle-projects-btn');
+    
+    const LIMIT = 4;
+    let currentCategory = 'all';
+    let isExpanded = false; // false = showing 4, true = showing all
 
+    function renderProjects() {
+        let visibleCount = 0;
+        let totalMatches = 0;
+
+        projectCards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            
+            // Check if card matches current filter
+            const matches = (currentCategory === 'all') || (category === currentCategory);
+
+            if (matches) {
+                totalMatches++;
+                // Decide if we should show this card based on limit and expansion state
+                if (isExpanded || visibleCount < LIMIT) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Handle Button Visibility & Text
+        if (totalMatches > LIMIT) {
+            viewMoreBtn.style.display = 'inline-block';
+            viewMoreBtn.textContent = isExpanded ? 'Show Less' : 'View More';
+        } else {
+            viewMoreBtn.style.display = 'none';
+        }
+    }
+
+    // Event Listener: Filter Buttons
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+            // Update Active State
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            const filterValue = btn.getAttribute('data-filter');
-
-            projectCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                const isHidden = card.classList.contains('hidden-project-card');
-                
-                // If the card is one of the 'hidden' extras, respect that state unless revealed
-                if (isHidden) {
-                    card.style.display = 'none';
-                    return;
-                }
-
-                if (filterValue === 'all') {
-                    card.style.display = 'flex';
-                } else {
-                    if (category === filterValue) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                }
-            });
+            // Set new category and reset expansion
+            currentCategory = btn.getAttribute('data-filter');
+            isExpanded = false; // Reset to collapsed view on filter change
+            
+            renderProjects();
         });
     });
 
+    // Event Listener: View More Button
+    if (viewMoreBtn) {
+        viewMoreBtn.addEventListener('click', () => {
+            isExpanded = !isExpanded; // Toggle state
+            renderProjects();
+        });
+    }
+
+    // Initial Render
+    renderProjects();
+
+
+    // ==========================================
+    // --- WORK EXPERIENCE EXPANSION ---
+    // ==========================================
+    // Initial Hide Logic for Work
+    const allWorkItems = document.querySelectorAll('.timeline-item');
+    allWorkItems.forEach((item, index) => {
+        if (index >= 5) item.style.display = 'none';
+    });
 
     // --- Scroll Animation ---
     const sections = document.querySelectorAll('section');
@@ -106,44 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => catScene.style.transform = 'scale(1)', 150);
         });
     }
-
-    // --- Initial Hide Logic for Work ---
-    const allWorkItems = document.querySelectorAll('.timeline-item');
-    allWorkItems.forEach((item, index) => {
-        if (index >= 5) item.style.display = 'none';
-    });
 });
 
-// --- Toggle Functions ---
-
-function toggleProjects() {
-    const hiddenCards = document.querySelectorAll('.hidden-project-card');
-    const btn = document.getElementById('show-more-projects');
-    
-    // We check the first card to see if it is currently displayed
-    // If it's effectively hidden (display: none), we show them.
-    let isCurrentlyHidden = true;
-    if (hiddenCards.length > 0) {
-        const style = window.getComputedStyle(hiddenCards[0]);
-        if (style.display !== 'none') isCurrentlyHidden = false;
-    }
-
-    if (isCurrentlyHidden) {
-        hiddenCards.forEach(card => {
-            card.style.display = 'flex';
-            // Important: we don't remove the class 'hidden-project-card' completely 
-            // so we can identify them later to hide them again.
-            // But we can mark them as 'revealed' to handle logic if needed.
-        });
-        btn.textContent = 'Show Less';
-    } else {
-        hiddenCards.forEach(card => {
-            card.style.display = 'none';
-        });
-        btn.textContent = 'View More AI Projects';
-    }
-}
-
+// Global function for Work Toggle (called by onclick in HTML)
 function toggleWork() {
     const allWorkItems = document.querySelectorAll('.timeline-item');
     const btn = document.getElementById('show-more-work');
@@ -164,7 +174,6 @@ function toggleWork() {
             if (index >= 5) item.style.display = 'none';
         });
         btn.textContent = 'Show More History';
-        // Scroll back to work section
         document.getElementById('work').scrollIntoView({behavior: 'smooth'});
     }
 }
