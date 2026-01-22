@@ -30,7 +30,7 @@ html {
 }
 
 body {
-    font-family: 'Outfit', sans-serif; /* Close alternative to Aeonik */
+    font-family: 'Outfit', sans-serif;
     background-color: var(--bg-body);
     color: var(--text-main);
     line-height: 1.6;
@@ -101,7 +101,7 @@ main {
 }
 
 section {
-    margin: 5rem 0; /* Reduced margin slightly */
+    margin: 5rem 0;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -173,6 +173,31 @@ section.visible {
     border: none;
 }
 
+/* SPECIAL CV BUTTON ANIMATION */
+.btn-cv {
+    padding: 0.8rem 1.6rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    border: none;
+    /* Animated Gradient Background */
+    background: linear-gradient(45deg, var(--primary), var(--primary-light), var(--accent), var(--primary));
+    background-size: 300% 300%;
+    animation: gradientShift 6s ease infinite;
+    box-shadow: 0 4px 15px rgba(0, 24, 84, 0.2);
+}
+
+.btn-cv:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 24, 84, 0.3);
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 /* --- Intro --- */
 #intro {
     margin-top: 5rem;
@@ -189,9 +214,8 @@ section.visible {
     display: block;
 }
 
-/* TYPING CONTAINER FIX: Prevents Layout Shift */
 .typing-container {
-    min-height: 4.5rem; /* Reserves space for the h2 */
+    min-height: 4.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -249,12 +273,12 @@ section.visible {
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem; /* Reduced gap */
+    gap: 1rem;
 }
 
 .skill-card {
     background: var(--bg-card);
-    padding: 1.2rem; /* Reduced padding */
+    padding: 1.2rem;
     border-radius: 12px;
     border: 1px solid var(--border);
     transition: var(--transition);
@@ -267,9 +291,9 @@ section.visible {
 }
 
 .icon-box {
-    width: 36px; /* Smaller icon box */
+    width: 36px;
     height: 36px;
-    background: #f0f4ff; /* Light blue tint */
+    background: #f0f4ff;
     color: var(--primary);
     display: flex;
     align-items: center;
@@ -284,7 +308,7 @@ section.visible {
 .skill-tags { list-style: none; }
 .skill-tags li {
     display: inline-block;
-    padding: 0.15rem 0.5rem; /* Smaller tags */
+    padding: 0.15rem 0.5rem;
     background: #f1f5f9;
     color: var(--text-muted);
     border-radius: 4px;
@@ -417,7 +441,6 @@ section.visible {
     background: var(--primary);
 }
 
-/* Ongoing Styling */
 .timeline-item.ongoing .timeline-dot {
     background: var(--primary);
     border-color: var(--accent);
