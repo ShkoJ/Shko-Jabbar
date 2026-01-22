@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Typing Animation ---
     const typingText = document.querySelector('.typing-text');
-    const phrases = ['Software Engineer', 'Data Scientist', 'Entrepreneur'];
+    const phrases = ['Software Engineer', 'Data Scientist', 'Consultant'];
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -43,29 +43,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active class from all
             filterBtns.forEach(b => b.classList.remove('active'));
-            // Add active to clicked
             btn.classList.add('active');
 
             const filterValue = btn.getAttribute('data-filter');
 
             projectCards.forEach(card => {
                 const category = card.getAttribute('data-category');
+                const isHidden = card.classList.contains('hidden-project-card');
                 
-                // If filtering 'all', show everything except explicitly hidden ones
-                // Note: The 'Show More' button handles the .hidden-project-card class separately.
-                // When filtering, we usually want to see everything in that category.
-                
+                // If the card is one of the 'hidden' extras, respect that state unless revealed
+                if (isHidden) {
+                    card.style.display = 'none';
+                    return;
+                }
+
                 if (filterValue === 'all') {
-                    // Reset to default state (some might be hidden by "Show More" logic)
-                    if (card.classList.contains('hidden-project-card')) {
-                        card.style.display = 'none';
-                    } else {
-                        card.style.display = 'flex';
-                    }
+                    card.style.display = 'flex';
                 } else {
-                    // Specific filter
                     if (category === filterValue) {
                         card.style.display = 'flex';
                     } else {
@@ -112,37 +107,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Initial Hide Logic for Work (CSS handles default, this handles button) ---
-    // Hide items 6+ manually to ensure consistent start state if CSS fails
+    // --- Initial Hide Logic for Work ---
     const allWorkItems = document.querySelectorAll('.timeline-item');
     allWorkItems.forEach((item, index) => {
         if (index >= 5) item.style.display = 'none';
     });
 });
 
-// --- Toggle Functions (Global Scope) ---
+// --- Toggle Functions ---
 
 function toggleProjects() {
-    // Specifically targets the hidden AI cards
     const hiddenCards = document.querySelectorAll('.hidden-project-card');
     const btn = document.getElementById('show-more-projects');
     
-    // Check if currently hidden (style none or class present)
-    const isHidden = hiddenCards[0].style.display === 'none' || window.getComputedStyle(hiddenCards[0]).display === 'none';
+    // We check the first card to see if it is currently displayed
+    // If it's effectively hidden (display: none), we show them.
+    let isCurrentlyHidden = true;
+    if (hiddenCards.length > 0) {
+        const style = window.getComputedStyle(hiddenCards[0]);
+        if (style.display !== 'none') isCurrentlyHidden = false;
+    }
 
-    if (isHidden) {
+    if (isCurrentlyHidden) {
         hiddenCards.forEach(card => {
             card.style.display = 'flex';
-            card.classList.remove('hidden-project-card'); // Remove class so filters see it as normal
-            card.classList.add('revealed-card'); // Mark as revealed
+            // Important: we don't remove the class 'hidden-project-card' completely 
+            // so we can identify them later to hide them again.
+            // But we can mark them as 'revealed' to handle logic if needed.
         });
         btn.textContent = 'Show Less';
     } else {
-        const revealedCards = document.querySelectorAll('.revealed-card');
-        revealedCards.forEach(card => {
+        hiddenCards.forEach(card => {
             card.style.display = 'none';
-            card.classList.add('hidden-project-card');
-            card.classList.remove('revealed-card');
         });
         btn.textContent = 'View More AI Projects';
     }
@@ -152,7 +148,7 @@ function toggleWork() {
     const allWorkItems = document.querySelectorAll('.timeline-item');
     const btn = document.getElementById('show-more-work');
     
-    // Check if the 6th item is hidden
+    // Check if the 6th item (index 5) is hidden
     const isHidden = allWorkItems[5].style.display === 'none';
 
     if (isHidden) {
@@ -168,7 +164,7 @@ function toggleWork() {
             if (index >= 5) item.style.display = 'none';
         });
         btn.textContent = 'Show More History';
-        // Scroll back to work section so user isn't lost
+        // Scroll back to work section
         document.getElementById('work').scrollIntoView({behavior: 'smooth'});
     }
 }
