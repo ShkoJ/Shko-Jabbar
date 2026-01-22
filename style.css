@@ -1,364 +1,528 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shko Jabbar</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <link rel="icon" type="image/jpeg" href="small_cat.jpeg">
-</head>
-<body>
-    <div class="loading"></div>
+/* MODERN & SMOOTH THEME */
+:root {
+    /* Color Palette */
+    --primary: #0f766e; /* Teal-700 */
+    --primary-dark: #115e59;
+    --accent: #2dd4bf; /* Teal-400 */
     
-    <header>
-        <nav>
-            <h1 class="site-logo">Shko Jabbar</h1>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#articles">Articles</a></li>
-                <li><a href="#work">Experience</a></li>
-                <li><a href="#contact" class="nav-cta">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    --bg-body: #f8fafc; /* Slate-50 */
+    --bg-card: #ffffff;
+    
+    --text-main: #1e293b; /* Slate-800 */
+    --text-muted: #64748b; /* Slate-500 */
+    
+    --border: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+    --shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.1);
+    
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-    <main>
-        <section id="intro">
-            <div class="intro-content">
-                <span class="greeting">Hello, I'm Shko</span>
-                <h2 class="typing-text">Software Engineer</h2>
-                <p class="subtitle">B.S. Software Engineering (2026) & Data Scientist based in Erbil.</p>
-                <div class="social-hero">
-                    <a href="https://github.com/ShkoJ" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/shko-jabbar-72686727b/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://medium.com/@shkobu420" target="_blank"><i class="fab fa-medium"></i></a>
-                </div>
-            </div>
-        </section>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        <section id="about">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-card">
-                <div class="about-text">
-                    <p class="highlight">Solving complex problems with data and design.</p>
-                    <p>I am a final-year Software Engineering student with a passion for building full-stack applications and deploying machine learning models. Whether it's optimizing business operations or analyzing data trends, I focus on delivering clean, efficient solutions.</p>
-                </div>
-                <div class="cv-container">
-                    <a href="Shko Jabbar - CV.pdf" download class="btn btn-primary"><i class="fas fa-download"></i> Download CV</a>
-                </div>
-            </div>
-        </section>
+html {
+    scroll-behavior: smooth;
+}
 
-        <section id="skills">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="icon-box"><i class="fas fa-code"></i></div>
-                    <h3>Languages</h3>
-                    <ul class="skill-tags">
-                        <li>Python</li>
-                        <li>JavaScript</li>
-                        <li>R</li>
-                        <li>Java</li>
-                        <li>C++</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <div class="icon-box"><i class="fas fa-brain"></i></div>
-                    <h3>Data & AI</h3>
-                    <ul class="skill-tags">
-                        <li>Pandas</li>
-                        <li>TensorFlow</li>
-                        <li>Scikit-learn</li>
-                        <li>PowerBI</li>
-                        <li>EDA</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
-                    <h3>Web Dev</h3>
-                    <ul class="skill-tags">
-                        <li>React</li>
-                        <li>Django</li>
-                        <li>HTML/CSS</li>
-                        <li>Firebase</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: --bg-body;
+    color: var(--text-main);
+    line-height: 1.6;
+    background-color: #f8fafc;
+}
 
-        <section id="projects">
-            <h2 class="section-title">Featured Projects</h2>
-            
-            <div class="filter-container">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="web">Websites & Systems</button>
-                <button class="filter-btn" data-filter="ai">AI & Data Science</button>
-            </div>
+/* --- Navigation --- */
+header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+}
 
-            <div class="project-grid">
-                <div class="project-card" data-category="web">
-                    <div class="card-badge">Start-up</div>
-                    <h3>Artisan Perfumes</h3>
-                    <p>Full e-commerce platform for a perfume business. Handles inventory, pricing, and multi-brand filtering.</p>
-                    <div class="links">
-                        <a href="https://artisan-perfume-hard.vercel.app/" target="_blank" class="btn btn-sm">Visit Site</a>
-                    </div>
-                </div>
+nav {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+}
 
-                <div class="project-card" data-category="web">
-                    <div class="card-badge">Productivity</div>
-                    <h3>Job Task Manager</h3>
-                    <p>A specialized note-taking and task-tracking application designed for professional workflows.</p>
-                    <div class="links">
-                        <a href="https://note-silk-mu.vercel.app/" target="_blank" class="btn btn-sm">Visit App</a>
-                    </div>
-                </div>
+.site-logo {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+}
 
-                <div class="project-card" data-category="web">
-                    <h3>Internal Meeting Booker</h3>
-                    <p>Booking system managing 20+ companies. Prevents double-booking and manages time slots.</p>
-                    <div class="links">
-                        <span class="btn btn-sm btn-locked"><i class="fas fa-lock"></i> Internal (Locked)</span>
-                    </div>
-                </div>
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
 
-                <div class="project-card" data-category="web">
-                    <h3>Warehouse Management</h3>
-                    <p>Internal system for tracking stock levels, shipments, and inventory movement.</p>
-                    <div class="links">
-                        <a href="https://github.com/ShkoJ/Warehouse-Management-system" target="_blank" class="btn btn-sm btn-outline">GitHub</a>
-                    </div>
-                </div>
+nav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
 
-                <div class="project-card" data-category="web">
-                    <h3>Volunteer.Krd Landing</h3>
-                    <p>Mobile-optimized landing page for the Volunteer Kurdistan initiative.</p>
-                    <div class="links">
-                        <a href="https://github.com/ShkoJ/Volunteer.Krd-Landing-Page" target="_blank" class="btn btn-sm btn-outline">GitHub</a>
-                    </div>
-                </div>
+nav a:hover {
+    color: var(--primary);
+}
 
-                <div class="project-card" data-category="web">
-                    <h3>Round-Robin Scheduler</h3>
-                    <p>Educational visualizer for CS students to understand CPU scheduling algorithms.</p>
-                    <div class="links">
-                        <a href="https://shkoj.github.io/Round-Robin-Scheduling/" target="_blank" class="btn btn-sm">Live Demo</a>
-                    </div>
-                </div>
+.nav-cta {
+    background: var(--text-main);
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+}
 
-                <div class="project-card" data-category="ai">
-                    <h3>Heart Disease AI</h3>
-                    <p>Web app predicting heart disease risk using ML analysis and visualization.</p>
-                    <div class="links">
-                        <a href="https://heart-disease-appp.streamlit.app/" target="_blank" class="btn btn-sm">Live Demo</a>
-                        <a href="https://github.com/ShkoJ/Heart-Disease-Classification-Project" target="_blank" class="btn btn-sm btn-outline">GitHub</a>
-                    </div>
-                </div>
+.nav-cta:hover {
+    background: var(--primary);
+}
 
-                <div class="project-card" data-category="ai">
-                    <h3>Dog Breed Classifier</h3>
-                    <p>Deep Learning model trained to classify dog breeds from images.</p>
-                    <div class="links">
-                        <a href="https://github.com/ShkoJ/ShkoJ-Dog-Breed-Classification-Project" target="_blank" class="btn btn-sm btn-outline">GitHub</a>
-                    </div>
-                </div>
+/* --- Layout --- */
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
 
-                <div class="project-card" data-category="ai">
-                    <h3>Virtual Desktop Assistant</h3>
-                    <p>Gesture control system for mouse and volume using computer vision.</p>
-                    <div class="links">
-                        <a href="https://youtu.be/igFPu53AaEc" target="_blank" class="btn btn-sm">Demo Video</a>
-                        <a href="https://github.com/ShkoJ/virtual-desktop-assistant" target="_blank" class="btn btn-sm btn-outline">GitHub</a>
-                    </div>
-                </div>
+section {
+    margin: 6rem 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
 
-                 <div class="project-card hidden-project-card" data-category="ai">
-                    <h3>Diabetes Prediction</h3>
-                    <p>ML solution for diabetes prediction with interactive GUI.</p>
-                    <div class="links">
-                        <a href="https://github.com/ShkoJ/diabetes-prediction-project" target="_blank" class="btn btn-sm btn-outline">GitHub</a>
-                    </div>
-                </div>
-                <div class="project-card hidden-project-card" data-category="ai">
-                    <h3>Bulldozer Price AI</h3>
-                    <p>Predicting bulldozer sale prices using Kaggle competition data.</p>
-                    <div class="links">
-                        <a href="https://github.com/ShkoJ/bulldozer-price-prediction-project" target="_blank" class="btn btn-sm btn-outline">GitHub</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align:center; margin-top:2rem;">
-                <button id="show-more-projects" class="btn btn-outline" onclick="toggleProjects()">View More AI Projects</button>
-            </div>
-        </section>
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-        <section id="articles">
-            <h2 class="section-title">Writing</h2>
-            <div class="articles-container">
-                <a href="https://medium.com/@shkobu420" target="_blank" class="article-card">
-                    <div class="article-icon"><i class="fab fa-medium"></i></div>
-                    <div class="article-content">
-                        <h3>Read my articles on Medium</h3>
-                        <p>I write about Data Science, Tech, and my journey in Software Engineering. Check out my latest stories.</p>
-                    </div>
-                    <div class="article-arrow"><i class="fas fa-arrow-right"></i></div>
-                </a>
-            </div>
-        </section>
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    color: var(--text-main);
+    position: relative;
+    display: inline-block;
+}
 
-        <section id="work">
-            <h2 class="section-title">Experience</h2>
-            <div class="timeline">
-                
-                <div class="timeline-item ongoing">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>EverCrest Partners</h3>
-                            <span class="date-badge">Nov 2025 - Present</span>
-                        </div>
-                        <h4 class="role-title">Analyst (Part-time)</h4>
-                        <p>Consulting firm. Conducting data analysis, market research, and supporting strategic projects.</p>
-                    </div>
-                </div>
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 40px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+}
 
-                <div class="timeline-item ongoing">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Artisan Perfumes</h3>
-                            <span class="date-badge">Sep 2025 - Present</span>
-                        </div>
-                        <h4 class="role-title">COO & CFO</h4>
-                        <p>Co-Founded a perfume retail business. I oversee financial planning, operations, and led the technical development of our e-commerce platform.</p>
-                    </div>
-                </div>
+/* --- Buttons --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition);
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Kurdistan Foundation</h3>
-                            <span class="date-badge">Aug - Sep 2025</span>
-                        </div>
-                        <h4 class="role-title">IT & Automation Intern</h4>
-                        <p>Developed automation/booking systems and custom LLMs for customer service workflows.</p>
-                    </div>
-                </div>
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+.btn-primary:hover { background: var(--primary-dark); }
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Revge</h3>
-                            <span class="date-badge">Aug - Sep 2025</span>
-                        </div>
-                        <h4 class="role-title">Data Scientist Intern</h4>
-                        <p>Applied NLP models and worked with data processing pipelines using Hugging Face.</p>
-                    </div>
-                </div>
+.btn-sm { padding: 0.4rem 0.8rem; font-size: 0.85rem; background: var(--text-main); color: white; }
+.btn-sm:hover { background: var(--primary); }
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Jobs.KRD</h3>
-                            <span class="date-badge">Jun - Jul 2025</span>
-                        </div>
-                        <h4 class="role-title">Website Tester</h4>
-                        <p>Freelance QA role. Identified critical bugs and usability issues to optimize site performance.</p>
-                    </div>
-                </div>
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-main);
+}
+.btn-outline:hover {
+    border-color: var(--text-main);
+}
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>University of Kurdistan Hawler</h3>
-                            <span class="date-badge">May - Jun 2025</span>
-                        </div>
-                        <h4 class="role-title">Library Management Tester</h4>
-                        <p>Analyzed usage data and identified UX bugs for the university's digital library system.</p>
-                    </div>
-                </div>
+.btn-locked {
+    background: #e2e8f0;
+    color: #94a3b8;
+    cursor: not-allowed;
+}
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>AIIC</h3>
-                            <span class="date-badge">Feb - Mar 2025</span>
-                        </div>
-                        <h4 class="role-title">Data Scientist Intern</h4>
-                        <p>Conducted data analysis with Python/Pandas to identify trends and deliver actionable insights.</p>
-                    </div>
-                </div>
+/* --- Intro --- */
+#intro {
+    margin-top: 5rem;
+    text-align: center;
+}
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>WAVE Agency</h3>
-                            <span class="date-badge">Feb - Dec 2024</span>
-                        </div>
-                        <h4 class="role-title">Co-Founder & CTO</h4>
-                        <p>Marketing agency. Handled event management technology, designed campaigns, and managed technical operations.</p>
-                    </div>
-                </div>
+.greeting {
+    color: var(--primary);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Daroon NGO</h3>
-                            <span class="date-badge">Jul 2023 - Jul 2024</span>
-                        </div>
-                        <h4 class="role-title">Operations Director</h4>
-                        <p>Founder. Led an NGO focused on drug abuse awareness for youth in the Kurdistan Region. Managed operations and community outreach.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align:center; margin-top:2rem;">
-                <button id="show-more-work" class="btn btn-outline" onclick="toggleWork()">Show More History</button>
-            </div>
-        </section>
+.typing-text {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0.5rem 0;
+    letter-spacing: -1px;
+    background: linear-gradient(to right, var(--text-main), var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-        <section id="contact">
-            <h2 class="section-title">Get in Touch</h2>
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>shko.jabbarr@gmail.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+964 751 733 8448</span>
-                    </div>
-                    
-                    <div class="cat-wrapper">
-                         <div id="cat-scene">
-                            <img src="small_cat.jpeg" alt="Cat" class="cat-image">
-                        </div>
-                        <p class="cat-hint">Pet me!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
 
-    <footer>
-        <p>&copy; 2026 Shko Jabbar. Designed & Built in Erbil.</p>
-    </footer>
+.social-hero a {
+    color: var(--text-muted);
+    font-size: 1.6rem;
+    margin: 0 0.8rem;
+    transition: var(--transition);
+}
+.social-hero a:hover { color: var(--primary); transform: translateY(-3px); }
 
-    <script src="script.js"></script>
-</body>
-</html>
+/* --- About --- */
+.about-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.highlight {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+.about-text p { color: var(--text-muted); }
+
+/* --- Skills --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent);
+}
+
+.icon-box {
+    width: 40px;
+    height: 40px;
+    background: #f0fdfa;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.skill-card h3 { font-size: 1.1rem; margin-bottom: 1rem; }
+
+.skill-tags { list-style: none; }
+.skill-tags li {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    background: #f1f5f9;
+    color: var(--text-muted);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin: 0 0.4rem 0.4rem 0;
+}
+
+/* --- Projects --- */
+.filter-container {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: var(--text-main);
+    color: white;
+    border-color: var(--text-main);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.7rem;
+    background: #f1f5f9;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.project-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; margin-top: 0.5rem;}
+.project-card p { color: var(--text-muted); font-size: 0.9rem; flex-grow: 1; margin-bottom: 1.5rem; }
+
+.hidden-project-card { display: none; }
+
+/* --- Articles --- */
+.articles-container {
+    display: grid;
+    gap: 1rem;
+}
+
+.article-card {
+    display: flex;
+    align-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: var(--transition);
+    gap: 1.5rem;
+}
+
+.article-card:hover {
+    border-color: var(--text-main);
+    transform: translateX(5px);
+}
+
+.article-icon { font-size: 2rem; color: var(--text-main); }
+.article-content h3 { font-size: 1.1rem; margin-bottom: 0.2rem; }
+.article-content p { font-size: 0.9rem; color: var(--text-muted); }
+.article-arrow { margin-left: auto; color: var(--primary); }
+
+/* --- Timeline Experience --- */
+.timeline {
+    position: relative;
+    border-left: 2px solid var(--border);
+    margin-left: 1rem;
+    padding-left: 2rem;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    transition: max-height 0.5s ease;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -2.6rem;
+    top: 0.3rem;
+    width: 16px;
+    height: 16px;
+    background: var(--bg-body);
+    border: 3px solid var(--border);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.timeline-item:hover .timeline-dot {
+    border-color: var(--primary);
+    background: var(--primary);
+}
+
+/* Ongoing Styling */
+.timeline-item.ongoing .timeline-dot {
+    background: var(--primary);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.2);
+}
+
+.timeline-item.ongoing .timeline-header h3 {
+    color: var(--primary-dark);
+}
+
+.timeline-item.ongoing .date-badge {
+    background: #ccfbf1;
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: 0.2rem;
+}
+
+.timeline-header h3 { font-size: 1.1rem; }
+
+.role-title {
+    color: var(--text-main);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.date-badge {
+    font-size: 0.8rem;
+    background: #f1f5f9;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    color: var(--text-muted);
+}
+
+.timeline-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Hide extra items logic */
+.timeline-item:nth-child(n+6) {
+    display: none; /* Initially hidden via CSS, simplified */
+}
+.timeline-item.visible { display: block; animation: fadeIn 0.5s; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- Contact --- */
+.contact-wrapper {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.contact-item {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+.contact-item i { color: var(--primary); margin-right: 0.8rem; }
+
+.cat-wrapper {
+    margin-top: 2rem;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.cat-image {
+    width: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--border);
+    transition: var(--transition);
+}
+.cat-wrapper:hover .cat-image { border-color: var(--accent); transform: scale(1.05); }
+.cat-hint { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; opacity: 0; transition: opacity 0.3s; }
+.cat-wrapper:hover .cat-hint { opacity: 1; }
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* --- Mobile --- */
+@media (max-width: 768px) {
+    nav { flex-direction: column; gap: 1rem; }
+    nav ul { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .about-card { flex-direction: column; text-align: center; }
+    .project-grid { grid-template-columns: 1fr; }
+    .timeline { border-left: 2px solid var(--border); padding-left: 1.5rem; }
+    .timeline-dot { left: -1.95rem; width: 12px; height: 12px; top: 0.4rem; }
+    .timeline-header { flex-direction: column; gap: 0.2rem; }
+}
+
+/* Loading */
+.loading {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #ffffff; z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    transition: opacity 0.5s;
+}
+.loading::after {
+    content: ''; width: 40px; height: 40px;
+    border: 4px solid #f1f5f9; border-top-color: var(--primary);
+    border-radius: 50%; animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
