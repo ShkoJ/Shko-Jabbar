@@ -1,21 +1,26 @@
 /* MODERN & SMOOTH THEME - BLUE EDITION */
 :root {
     /* Color Palette */
-    --primary: #001854; /* Dark Blue */
+    --primary: #001854;
+    /* Dark Blue */
     --primary-light: #0d2a75;
-    --accent: #7FADE3; /* Light Blue */
-    
-    --bg-body: #f8fafc; /* Slate-50 */
+    --accent: #7FADE3;
+    /* Light Blue */
+
+    --bg-body: #f8fafc;
+    /* Slate-50 */
     --bg-card: #ffffff;
-    
-    --text-main: #1e293b; /* Slate-800 */
-    --text-muted: #64748b; /* Slate-500 */
-    
+
+    --text-main: #1e293b;
+    /* Slate-800 */
+    --text-muted: #64748b;
+    /* Slate-500 */
+
     --border: #e2e8f0;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-    --shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.1);
-    
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -47,13 +52,76 @@ body {
     z-index: -2;
     display: grid;
     /* Columns and rows will be set by JS */
-    pointer-events: none; /* Let clicks pass through */
+    pointer-events: none;
+    perspective: 1000px;
+    /* Adds 3D depth perspective */
 }
 
 .grid-cell {
-    border: 1px solid rgba(0, 24, 84, 0.05); /* Brand Color (Dark Blue) very faint */
-    pointer-events: auto; /* Re-enable pointer events for hover effect */
-    transition: background-color 0.2s;
+    border: 1px solid rgba(0, 24, 84, 0.03);
+    /* Lighter border for clean look */
+    pointer-events: auto;
+    position: relative;
+    z-index: 1;
+    transform-origin: center center;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+
+    /* Base State: Smooth Decay (Trail Effect) */
+    /* When active class is removed, it slowly animates back to this state */
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+        background-color 0.8s ease-out,
+        box-shadow 0.8s ease-out,
+        border-color 0.8s ease-out;
+    will-change: transform, background-color;
+    background-color: transparent;
+}
+
+.grid-cell.active {
+    /* Active State: Fluid Lift */
+    transform: scale(1.25) translateZ(30px);
+    /* Slightly less huge, more controlled */
+    background-color: rgba(0, 24, 84, 0.75);
+    /* More transparent/glass-like */
+    z-index: 100;
+    box-shadow: 0 35px 70px -10px rgba(0, 24, 84, 0.4);
+    /* Very soft, diffused shadow */
+    border-color: rgba(255, 255, 255, 0.4);
+
+    /* Smooth, Fluid Easing (less distinct "snap", more "float") */
+    /* ease-out is smoother for the mouse-follow feel */
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        background-color 0.2s ease-out,
+        box-shadow 0.3s ease-out;
+}
+
+.grid-cell.neighbor {
+    /* Neighbor State: Bridge */
+    transform: scale(1.15) translateZ(12px);
+    background-color: rgba(127, 173, 227, 0.25);
+    /* Faint Blue */
+    z-index: 50;
+    box-shadow: 0 20px 40px -10px rgba(127, 173, 227, 0.2);
+    border-color: rgba(127, 173, 227, 0.4);
+
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        background-color 0.35s ease-out,
+        box-shadow 0.35s ease-out;
+}
+
+.grid-cell.neighbor-far {
+    /* Far Neighbor State: The Fade Out */
+    transform: scale(1.06) translateZ(4px);
+    z-index: 20;
+    background-color: rgba(127, 173, 227, 0.08);
+    /* VERY faint blue to blend */
+    box-shadow: 0 10px 20px -5px rgba(127, 173, 227, 0.1);
+    border-color: rgba(127, 173, 227, 0.2);
+
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        background-color 0.4s ease-out,
+        border-color 0.4s ease-out,
+        box-shadow 0.4s ease-out;
 }
 
 /* --- Navigation --- */
@@ -129,11 +197,11 @@ main {
 
 section {
     margin: 5rem 0;
-    opacity: 1; 
+    opacity: 1;
 }
 
 .scroll-section {
-    opacity: 0; 
+    opacity: 0;
 }
 
 .section-title {
@@ -146,7 +214,7 @@ section {
 }
 
 .section-title::after {
-    display: none; 
+    display: none;
 }
 
 .title-underline {
@@ -176,16 +244,28 @@ section {
     background: var(--primary);
     color: white;
 }
-.btn-primary:hover { background: var(--primary-light); }
 
-.btn-sm { padding: 0.4rem 0.8rem; font-size: 0.85rem; background: var(--primary); color: white; }
-.btn-sm:hover { background: var(--primary-light); }
+.btn-primary:hover {
+    background: var(--primary-light);
+}
+
+.btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    background: var(--primary);
+    color: white;
+}
+
+.btn-sm:hover {
+    background: var(--primary-light);
+}
 
 .btn-outline {
     background: transparent;
     border: 1px solid var(--border);
     color: var(--text-main);
 }
+
 .btn-outline:hover {
     border-color: var(--primary);
     color: var(--primary);
@@ -199,9 +279,9 @@ section {
 }
 
 .btn-cv {
-    padding: 0.7rem 1.5rem; 
-    font-size: 0.85rem;     
-    white-space: nowrap;    
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
     font-weight: 600;
     color: white;
     border: none;
@@ -217,9 +297,17 @@ section {
 }
 
 @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* --- Intro --- */
@@ -228,8 +316,10 @@ section {
     text-align: center;
 }
 
-.greeting, .subtitle, .social-hero {
-    opacity: 0; 
+.greeting,
+.subtitle,
+.social-hero {
+    opacity: 0;
 }
 
 .greeting {
@@ -271,10 +361,13 @@ section {
     color: var(--text-muted);
     font-size: 1.6rem;
     margin: 0 0.8rem;
-    display: inline-block; 
+    display: inline-block;
     transition: color 0.3s;
 }
-.social-hero a:hover { color: var(--primary); }
+
+.social-hero a:hover {
+    color: var(--primary);
+}
 
 /* --- About --- */
 .about-card {
@@ -287,7 +380,8 @@ section {
     align-items: center;
     gap: 2rem;
     box-shadow: var(--shadow-sm);
-    z-index: 10; /* Ensure it floats above grid */
+    z-index: 10;
+    /* Ensure it floats above grid */
     position: relative;
 }
 
@@ -298,7 +392,9 @@ section {
     margin-bottom: 0.5rem;
 }
 
-.about-text p { color: var(--text-muted); }
+.about-text p {
+    color: var(--text-muted);
+}
 
 /* --- Skills --- */
 .skills-grid {
@@ -335,9 +431,16 @@ section {
     font-size: 1rem;
 }
 
-.skill-card h3 { font-size: 1.05rem; margin-bottom: 0.8rem; color: var(--primary); }
+.skill-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.8rem;
+    color: var(--primary);
+}
 
-.skill-tags { list-style: none; }
+.skill-tags {
+    list-style: none;
+}
+
 .skill-tags li {
     display: inline-block;
     padding: 0.15rem 0.5rem;
@@ -371,7 +474,8 @@ section {
     transition: var(--transition);
 }
 
-.filter-btn.active, .filter-btn:hover {
+.filter-btn.active,
+.filter-btn:hover {
     background: var(--primary);
     color: white;
     border-color: var(--primary);
@@ -407,8 +511,19 @@ section {
     font-weight: 600;
 }
 
-.project-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; margin-top: 0.5rem; color: var(--primary); }
-.project-card p { color: var(--text-muted); font-size: 0.9rem; flex-grow: 1; margin-bottom: 1.5rem; }
+.project-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    color: var(--primary);
+}
+
+.project-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+}
 
 /* --- Articles --- */
 .articles-container {
@@ -436,10 +551,25 @@ section {
     transform: translateX(5px);
 }
 
-.article-icon { font-size: 2rem; color: var(--text-main); }
-.article-content h3 { font-size: 1.1rem; margin-bottom: 0.2rem; }
-.article-content p { font-size: 0.9rem; color: var(--text-muted); }
-.article-arrow { margin-left: auto; color: var(--primary); }
+.article-icon {
+    font-size: 2rem;
+    color: var(--text-main);
+}
+
+.article-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+}
+
+.article-content p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.article-arrow {
+    margin-left: auto;
+    color: var(--primary);
+}
 
 /* --- Timeline --- */
 .timeline {
@@ -497,7 +627,9 @@ section {
     margin-bottom: 0.2rem;
 }
 
-.timeline-header h3 { font-size: 1.1rem; }
+.timeline-header h3 {
+    font-size: 1.1rem;
+}
 
 .role-title {
     color: var(--text-main);
@@ -536,7 +668,11 @@ section {
     margin-bottom: 1rem;
     color: var(--text-main);
 }
-.contact-item i { color: var(--primary); margin-right: 0.8rem; }
+
+.contact-item i {
+    color: var(--primary);
+    margin-right: 0.8rem;
+}
 
 .cat-wrapper {
     margin-top: 2rem;
@@ -550,9 +686,23 @@ section {
     border: 3px solid var(--border);
     transition: var(--transition);
 }
-.cat-wrapper:hover .cat-image { border-color: var(--accent); transform: scale(1.05); }
-.cat-hint { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; opacity: 0; transition: opacity 0.3s; }
-.cat-wrapper:hover .cat-hint { opacity: 1; }
+
+.cat-wrapper:hover .cat-image {
+    border-color: var(--accent);
+    transform: scale(1.05);
+}
+
+.cat-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.cat-wrapper:hover .cat-hint {
+    opacity: 1;
+}
 
 /* --- Footer --- */
 footer {
@@ -562,7 +712,7 @@ footer {
     margin-top: 4rem;
     color: var(--text-muted);
     font-size: 0.9rem;
-    margin-bottom: 3rem; 
+    margin-bottom: 3rem;
     z-index: 10;
     position: relative;
 }
@@ -579,32 +729,87 @@ footer {
     color: var(--text-muted);
     opacity: 0.7;
     z-index: 1001;
-    pointer-events: none; /* Let it be clicked through */
+    pointer-events: none;
+    /* Let it be clicked through */
 }
 
 /* --- Mobile --- */
 @media (max-width: 768px) {
-    nav { flex-direction: column; gap: 1rem; }
-    nav ul { gap: 1rem; flex-wrap: wrap; justify-content: center; }
-    .about-card { flex-direction: column; text-align: center; }
-    .project-grid { grid-template-columns: 1fr; }
-    .timeline { border-left: 2px solid var(--border); padding-left: 1.5rem; }
-    .timeline-dot { left: -1.95rem; width: 12px; height: 12px; top: 0.4rem; }
-    .timeline-header { flex-direction: column; gap: 0.2rem; }
-    .typing-text { font-size: 2.5rem; }
-    #clock-widget { bottom: 10px; left: 10px; font-size: 0.7rem; }
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav ul {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .about-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline {
+        border-left: 2px solid var(--border);
+        padding-left: 1.5rem;
+    }
+
+    .timeline-dot {
+        left: -1.95rem;
+        width: 12px;
+        height: 12px;
+        top: 0.4rem;
+    }
+
+    .timeline-header {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .typing-text {
+        font-size: 2.5rem;
+    }
+
+    #clock-widget {
+        bottom: 10px;
+        left: 10px;
+        font-size: 0.7rem;
+    }
 }
 
 /* Loading */
 .loading {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #ffffff; z-index: 9999;
-    display: flex; justify-content: center; align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: opacity 0.5s;
 }
+
 .loading::after {
-    content: ''; width: 40px; height: 40px;
-    border: 4px solid #f1f5f9; border-top-color: var(--primary);
-    border-radius: 50%; animation: spin 0.8s linear infinite;
+    content: '';
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f1f5f9;
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
 }
-@keyframes spin { to { transform: rotate(360deg); } }
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
