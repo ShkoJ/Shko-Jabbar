@@ -1,94 +1,172 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // --- 1. GRID BACKGROUND GENERATION & ANIMATION ---
     const gridContainer = document.querySelector('.grid-background');
     if (gridContainer) {
         const cellSize = 50; // Size in pixels
         const cols = Math.floor(window.innerWidth / cellSize);
         const rows = Math.floor(window.innerHeight / cellSize);
-        
+
         // Set CSS Grid Layout
         gridContainer.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
         gridContainer.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
-        
+
         // Create Cells
         const totalCells = cols * rows;
         for (let i = 0; i < totalCells; i++) {
             const cell = document.createElement('div');
             cell.classList.add('grid-cell');
-            
-            // Interaction: Mouse Enter triggers localized ripple
-            cell.addEventListener('mouseenter', () => {
-                // Determine neighbors (simple logic: current, +1, -1, +cols, -cols)
-                const neighbors = [
-                    cell,
-                    gridContainer.children[i + 1],
-                    gridContainer.children[i - 1],
-                    gridContainer.children[i + cols],
-                    gridContainer.children[i - cols]
-                ].filter(el => el !== undefined); // remove undefined neighbors (edges)
-
-                // Animate Neighbors (Ripple effect)
-                anime({
-                    targets: neighbors,
-                    scale: [
-                        {value: 1.15, easing: 'easeOutSine', duration: 250},
-                        {value: 1, easing: 'easeInOutQuad', duration: 500}
-                    ],
-                    backgroundColor: [
-                        {value: 'rgba(127, 173, 227, 0.1)', duration: 250}, // Accent color low opacity
-                        {value: 'rgba(255, 255, 255, 0)', duration: 500}
-                    ],
-                    delay: anime.stagger(50) // Slight stagger between center and neighbors
-                });
-            });
-            
             gridContainer.appendChild(cell);
+        }
+
+        // Global Mouse Interaction for Grid
+        let previousIndex = -1;
+
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+
+            // Calculate grid coordinates
+            const col = Math.floor(x / cellSize);
+            const row = Math.floor(y / cellSize);
+
+            // Calculate linear index
+            const index = row * cols + col;
+
+            // Boundary checks
+            if (index < 0 || index >= totalCells || col < 0 || col >= cols || row < 0 || row >= rows) {
+                if (previousIndex !== -1) clearHighlights(previousIndex);
+                previousIndex = -1;
+                return;
+            }
+
+            // Optimization: Only update if the cell changed
+            if (index !== previousIndex) {
+                if (previousIndex !== -1) clearHighlights(previousIndex);
+                applyHighlights(index);
+                previousIndex = index;
+            }
+        });
+
+        document.addEventListener('mouseleave', () => {
+            if (previousIndex !== -1) {
+                clearHighlights(previousIndex);
+                previousIndex = -1;
+            }
+        });
+
+        function getNeighbors(index, radius = 1) {
+            const neighbors = [];
+            const r = Math.floor(index / cols);
+            const c = index % cols;
+
+            for (let dr = -radius; dr <= radius; dr++) {
+                for (let dc = -radius; dc <= radius; dc++) {
+                    if (dr === 0 && dc === 0) continue; // Skip center
+
+                    const nr = r + dr;
+                    const nc = c + dc;
+
+                    if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {
+                        neighbors.push({
+                            index: nr * cols + nc,
+                            distance: Math.max(Math.abs(dr), Math.abs(dc)) // Chebyshev distance
+                        });
+                    }
+                }
+            }
+            return neighbors;
+        }
+
+        function applyHighlights(index) {
+            const cells = gridContainer.children;
+            if (!cells[index]) return;
+
+            // Highlight Center
+            cells[index].classList.remove('neighbor', 'neighbor-far'); // Safety clear
+            cells[index].classList.add('active');
+
+            // Get Neighbors (Radius 2)
+            const neighbors = getNeighbors(index, 2);
+
+            neighbors.forEach(n => {
+                const cell = cells[n.index];
+                if (!cell) return;
+
+                // Clear potential conflicts
+                cell.classList.remove('active', 'neighbor', 'neighbor-far');
+
+                if (n.distance === 1) {
+                    cell.classList.add('neighbor');
+                } else if (n.distance === 2) {
+                    cell.classList.add('neighbor-far');
+                }
+            });
+        }
+
+        function clearHighlights(index) {
+            const cells = gridContainer.children;
+            if (!cells[index]) return; // Safety
+
+            // We need to clear not just the center, but the area around where the center WAS.
+            // Since we don't store the previous neighbors specifically, 
+            // the safest efficient way is to recalculate the area of influence 
+            // or just clear the specific classes if we know them.
+            // BUT, since 'applyHighlights' clears classes before adding, 
+            // and we track 'previousIndex', we can just clear the zone around 'previousIndex'.
+
+            cells[index].classList.remove('active');
+
+            const neighbors = getNeighbors(index, 2);
+            neighbors.forEach(n => {
+                const cell = cells[n.index];
+                if (cell) cell.classList.remove('neighbor', 'neighbor-far');
+            });
         }
     }
 
     // --- 2. GLOBAL TIMELINE ---
     let introTimeline = anime.timeline({
-        autoplay: false, 
+        autoplay: false,
         easing: 'easeOutExpo',
         duration: 1000
     });
 
     introTimeline
-    .add({
-        targets: '.site-logo',
-        opacity: [0, 1],
-        translateY: [-20, 0],
-        duration: 800
-    })
-    .add({
-        targets: '.nav-item',
-        opacity: [0, 1],
-        translateY: [-20, 0],
-        delay: anime.stagger(100),
-    }, '-=600')
-    .add({
-        targets: '.intro-content .greeting',
-        opacity: [0, 1],
-        translateY: [20, 0],
-    }, '-=400')
-    .add({
-        targets: '.intro-content .subtitle',
-        opacity: [0, 1],
-        translateY: [20, 0],
-    }, '-=800')
-    .add({
-        targets: '.social-hero a',
-        opacity: [0, 1],
-        translateY: [20, 0],
-        scale: [0.5, 1],
-        delay: anime.stagger(100)
-    }, '-=500')
-    .add({
-        targets: '#clock-widget', 
-        opacity: [0, 1],
-        duration: 800
-    }, '-=800');
+        .add({
+            targets: '.site-logo',
+            opacity: [0, 1],
+            translateY: [-20, 0],
+            duration: 800
+        })
+        .add({
+            targets: '.nav-item',
+            opacity: [0, 1],
+            translateY: [-20, 0],
+            delay: anime.stagger(100),
+        }, '-=600')
+        .add({
+            targets: '.intro-content .greeting',
+            opacity: [0, 1],
+            translateY: [20, 0],
+        }, '-=400')
+        .add({
+            targets: '.intro-content .subtitle',
+            opacity: [0, 1],
+            translateY: [20, 0],
+        }, '-=800')
+        .add({
+            targets: '.social-hero a',
+            opacity: [0, 1],
+            translateY: [20, 0],
+            scale: [0.5, 1],
+            delay: anime.stagger(100)
+        }, '-=500')
+        .add({
+            targets: '#clock-widget',
+            opacity: [0, 1],
+            duration: 800
+        }, '-=800');
 
     // --- PRELOADER ---
     const loader = document.querySelector('.loading');
@@ -109,18 +187,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const clockElement = document.getElementById('clock-widget');
         if (clockElement) {
             const now = new Date();
-            const options = { 
-                timeZone: 'Asia/Baghdad', 
-                hour: '2-digit', 
-                minute: '2-digit', 
-                hour12: true 
+            const options = {
+                timeZone: 'Asia/Baghdad',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
             };
             const timeString = now.toLocaleTimeString('en-US', options);
             clockElement.textContent = `My Time: ${timeString}`;
         }
     }
     setInterval(updateClock, 1000);
-    updateClock(); 
+    updateClock();
 
     // --- 4. SCROLL TRIGGERS ---
     // A. SVG LINE DRAWING
@@ -162,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sectionObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 }); 
+    }, { threshold: 0.1 });
     sections.forEach(sec => sectionObserver.observe(sec));
 
     // C. SKILLS STAGGER
@@ -177,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     translateY: [50, 0],
                     delay: anime.stagger(150),
                     easing: 'easeOutQuad',
-                    complete: function(anim) {
+                    complete: function (anim) {
                         document.querySelectorAll('.skill-card').forEach((card, index) => {
                             anime({
                                 targets: card.querySelectorAll('.tag-item'),
@@ -204,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     targets: '.project-card',
                     scale: [0.8, 1],
                     opacity: [0, 1],
-                    delay: anime.stagger(100, {grid: [1, 8], from: 'center'}),
+                    delay: anime.stagger(100, { grid: [1, 8], from: 'center' }),
                     easing: 'easeOutElastic(1, .8)',
                     duration: 800
                 });
@@ -212,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, { threshold: 0.1 });
-    if(projectGrid) projectObserver.observe(projectGrid);
+    if (projectGrid) projectObserver.observe(projectGrid);
 
 
     // --- 5. INTERACTIVE ANIMATIONS ---
@@ -251,11 +329,11 @@ document.addEventListener('DOMContentLoaded', () => {
             anime({
                 targets: '.cat-image',
                 keyframes: [
-                    {translateY: -10, scaleY: 0.95, duration: 100},
-                    {translateY: -40, scaleY: 1.1, duration: 250},
-                    {rotate: 15, duration: 100},
-                    {rotate: -15, duration: 100},
-                    {rotate: 0, translateY: 0, scaleY: 1, duration: 300}
+                    { translateY: -10, scaleY: 0.95, duration: 100 },
+                    { translateY: -40, scaleY: 1.1, duration: 250 },
+                    { rotate: 15, duration: 100 },
+                    { rotate: -15, duration: 100 },
+                    { rotate: 0, translateY: 0, scaleY: 1, duration: 300 }
                 ],
                 easing: 'easeOutQuad',
             });
@@ -335,7 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentCategory = btn.getAttribute('data-filter');
-            isExpanded = false; 
+            isExpanded = false;
             renderProjects();
         });
     });
@@ -379,6 +457,6 @@ function toggleWork() {
             if (index >= 5) item.style.display = 'none';
         });
         btn.textContent = 'Show More History';
-        document.getElementById('work').scrollIntoView({behavior: 'smooth'});
+        document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
     }
 }
