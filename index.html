@@ -7,22 +7,24 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <link rel="icon" type="image/jpeg" href="small_cat.jpeg">
 </head>
 <body>
     <div class="loading"></div>
+
+    <div class="grid-background"></div>
     
     <header>
         <nav>
             <h1 class="site-logo">Shko Jabbar</h1>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#articles">Articles</a></li>
-                <li><a href="#work">Experience</a></li>
-                <li><a href="#contact" class="nav-cta">Contact</a></li>
+            <ul class="nav-links">
+                <li class="nav-item"><a href="#about">About</a></li>
+                <li class="nav-item"><a href="#skills">Skills</a></li>
+                <li class="nav-item"><a href="#projects">Projects</a></li>
+                <li class="nav-item"><a href="#articles">Articles</a></li>
+                <li class="nav-item"><a href="#work">Experience</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-cta">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -36,15 +38,21 @@
                 </div>
                 <p class="subtitle">B.S. Software Engineering (2026) & Data Scientist based in Erbil.</p>
                 <div class="social-hero">
-                    <a href="https://github.com/ShkoJ" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/shko-jabbar-72686727b/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://medium.com/@shkobu420" target="_blank"><i class="fab fa-medium"></i></a>
+                    <a href="https://github.com/ShkoJ" target="_blank" class="hero-icon"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/shko-jabbar-72686727b/" target="_blank" class="hero-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://medium.com/@shkobu420" target="_blank" class="hero-icon"><i class="fab fa-medium"></i></a>
                 </div>
             </div>
         </section>
 
-        <section id="about">
-            <h2 class="section-title">About Me</h2>
+        <section id="about" class="scroll-section">
+            <h2 class="section-title">
+                About Me
+                <svg class="title-underline" width="200" height="10" viewBox="0 0 200 10">
+                    <path d="M0,5 Q100,10 200,5" stroke="#7FADE3" stroke-width="4" fill="transparent" />
+                </svg>
+            </h2>
+            
             <div class="about-card">
                 <div class="about-text">
                     <p class="highlight">I like Software and Consulting.</p>
@@ -56,46 +64,56 @@
             </div>
         </section>
 
-        <section id="skills">
-            <h2 class="section-title">Technical Skills</h2>
+        <section id="skills" class="scroll-section">
+            <h2 class="section-title">
+                Technical Skills
+                <svg class="title-underline" width="200" height="10" viewBox="0 0 200 10">
+                    <path d="M0,5 Q100,10 200,5" stroke="#7FADE3" stroke-width="4" fill="transparent" />
+                </svg>
+            </h2>
             <div class="skills-grid">
                 <div class="skill-card">
                     <div class="icon-box"><i class="fas fa-code"></i></div>
-                    <h3>Languages</h3>
+                    <h3>Programming Languages</h3>
                     <ul class="skill-tags">
-                        <li>Python</li>
-                        <li>JavaScript</li>
-                        <li>R</li>
-                        <li>Java</li>
-                        <li>C++</li>
+                        <li class="tag-item">Python</li>
+                        <li class="tag-item">JavaScript</li>
+                        <li class="tag-item">R</li>
+                        <li class="tag-item">Java</li>
+                        <li class="tag-item">C++</li>
                     </ul>
                 </div>
                 <div class="skill-card">
                     <div class="icon-box"><i class="fas fa-brain"></i></div>
                     <h3>Data & AI</h3>
                     <ul class="skill-tags">
-                        <li>Pandas</li>
-                        <li>TensorFlow</li>
-                        <li>Scikit-learn</li>
-                        <li>PowerBI</li>
-                        <li>EDA</li>
+                        <li class="tag-item">Pandas</li>
+                        <li class="tag-item">TensorFlow</li>
+                        <li class="tag-item">Scikit-learn</li>
+                        <li class="tag-item">PowerBI</li>
+                        <li class="tag-item">EDA</li>
                     </ul>
                 </div>
                 <div class="skill-card">
                     <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
                     <h3>Web Dev</h3>
                     <ul class="skill-tags">
-                        <li>React</li>
-                        <li>Django</li>
-                        <li>HTML/CSS</li>
-                        <li>Firebase</li>
+                        <li class="tag-item">React</li>
+                        <li class="tag-item">Django</li>
+                        <li class="tag-item">HTML/CSS</li>
+                        <li class="tag-item">Firebase</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section id="projects">
-            <h2 class="section-title">Projects</h2>
+        <section id="projects" class="scroll-section">
+            <h2 class="section-title">
+                Projects
+                <svg class="title-underline" width="200" height="10" viewBox="0 0 200 10">
+                    <path d="M0,5 Q100,10 200,5" stroke="#7FADE3" stroke-width="4" fill="transparent" />
+                </svg>
+            </h2>
             
             <div class="filter-container">
                 <button class="filter-btn active" data-filter="all">All</button>
@@ -211,7 +229,7 @@
             </div>
         </section>
 
-        <section id="articles">
+        <section id="articles" class="scroll-section">
             <h2 class="section-title">Writing</h2>
             <div class="articles-container">
                 <a href="https://medium.com/@shkobu420" target="_blank" class="article-card">
@@ -225,8 +243,13 @@
             </div>
         </section>
 
-        <section id="work">
-            <h2 class="section-title">Experience</h2>
+        <section id="work" class="scroll-section">
+            <h2 class="section-title">
+                Experience
+                <svg class="title-underline" width="200" height="10" viewBox="0 0 200 10">
+                    <path d="M0,5 Q100,10 200,5" stroke="#7FADE3" stroke-width="4" fill="transparent" />
+                </svg>
+            </h2>
             <div class="timeline">
                 
                 <div class="timeline-item ongoing">
@@ -317,6 +340,18 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-header">
+                            <h3>FiveOneLabs - Orange Corners</h3>
+                            <span class="date-badge">Aug - Dec 2024</span>
+                        </div>
+                        <h4 class="role-title">Incubator Participant</h4>
+                        <p>Led development of the 'Daroon' mental health app, built prototypes, and pitched to investors.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
                             <h3>WAVE Agency</h3>
                             <span class="date-badge">Feb - Dec 2024</span>
                         </div>
@@ -333,9 +368,22 @@
                             <span class="date-badge">Jul 2023 - Jul 2024</span>
                         </div>
                         <h4 class="role-title">Operations Director</h4>
-                        <p>Founder. Led an NGO focused on drug abuse awareness for youth in the Kurdistan Region. Managed operations and community outreach.</p>
+                        <p>Founder. Led an NGO focused on drug abuse awareness for youth in the Kurdistan Region.</p>
                     </div>
                 </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Al Judi Global</h3>
+                            <span class="date-badge">Jul - Sep 2023</span>
+                        </div>
+                        <h4 class="role-title">IT Specialist</h4>
+                        <p>My first job. Handled IT support, regulatory compliance, and used Excel for continuous improvement.</p>
+                    </div>
+                </div>
+
             </div>
             
             <div style="text-align:center; margin-top:2rem;">
@@ -343,7 +391,7 @@
             </div>
         </section>
 
-        <section id="contact">
+        <section id="contact" class="scroll-section">
             <h2 class="section-title">Get in Touch</h2>
             <div class="contact-wrapper">
                 <div class="contact-info">
@@ -360,7 +408,7 @@
                          <div id="cat-scene">
                             <img src="small_cat.jpeg" alt="Cat" class="cat-image">
                         </div>
-                        <p class="cat-hint">Pet me!</p>
+                        <p class="cat-hint">Click me for a dance!</p>
                     </div>
                 </div>
             </div>
@@ -371,8 +419,8 @@
         <p>&copy; 2026 Shko Jabbar.</p>
     </footer>
 
+    <div id="clock-widget">Loading...</div>
+
     <script src="script.js"></script>
 </body>
 </html>
-
-
