@@ -34,6 +34,26 @@ body {
     background-color: var(--bg-body);
     color: var(--text-main);
     line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- GRID BACKGROUND --- */
+.grid-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    display: grid;
+    /* Columns and rows will be set by JS */
+    pointer-events: none; /* Let clicks pass through */
+}
+
+.grid-cell {
+    border: 1px solid rgba(0, 24, 84, 0.05); /* Brand Color (Dark Blue) very faint */
+    pointer-events: auto; /* Re-enable pointer events for hover effect */
+    transition: background-color 0.2s;
 }
 
 /* --- Navigation --- */
@@ -61,6 +81,8 @@ nav {
     font-size: 1.4rem;
     color: var(--primary);
     letter-spacing: -0.5px;
+    opacity: 0;
+    transform: translateY(-20px);
 }
 
 nav ul {
@@ -68,6 +90,11 @@ nav ul {
     display: flex;
     gap: 2rem;
     align-items: center;
+}
+
+.nav-item {
+    opacity: 0;
+    transform: translateY(-20px);
 }
 
 nav a {
@@ -102,14 +129,11 @@ main {
 
 section {
     margin: 5rem 0;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    opacity: 1; 
 }
 
-section.visible {
-    opacity: 1;
-    transform: translateY(0);
+.scroll-section {
+    opacity: 0; 
 }
 
 .section-title {
@@ -122,14 +146,15 @@ section.visible {
 }
 
 .section-title::after {
-    content: '';
+    display: none; 
+}
+
+.title-underline {
     position: absolute;
+    bottom: -12px;
     left: 0;
-    bottom: -8px;
-    width: 40px;
-    height: 4px;
-    background: var(--accent);
-    border-radius: 2px;
+    width: 100%;
+    overflow: visible;
 }
 
 /* --- Buttons --- */
@@ -173,14 +198,13 @@ section.visible {
     border: none;
 }
 
-/* SPECIAL CV BUTTON ANIMATION */
 .btn-cv {
-    padding: 0.8rem 1.6rem;
-    font-size: 1rem;
+    padding: 0.7rem 1.5rem; 
+    font-size: 0.85rem;     
+    white-space: nowrap;    
     font-weight: 600;
     color: white;
     border: none;
-    /* Animated Gradient Background */
     background: linear-gradient(45deg, var(--primary), var(--primary-light), var(--accent), var(--primary));
     background-size: 300% 300%;
     animation: gradientShift 6s ease infinite;
@@ -202,6 +226,10 @@ section.visible {
 #intro {
     margin-top: 5rem;
     text-align: center;
+}
+
+.greeting, .subtitle, .social-hero {
+    opacity: 0; 
 }
 
 .greeting {
@@ -243,9 +271,10 @@ section.visible {
     color: var(--text-muted);
     font-size: 1.6rem;
     margin: 0 0.8rem;
-    transition: var(--transition);
+    display: inline-block; 
+    transition: color 0.3s;
 }
-.social-hero a:hover { color: var(--primary); transform: translateY(-3px); }
+.social-hero a:hover { color: var(--primary); }
 
 /* --- About --- */
 .about-card {
@@ -258,6 +287,8 @@ section.visible {
     align-items: center;
     gap: 2rem;
     box-shadow: var(--shadow-sm);
+    z-index: 10; /* Ensure it floats above grid */
+    position: relative;
 }
 
 .highlight {
@@ -269,11 +300,13 @@ section.visible {
 
 .about-text p { color: var(--text-muted); }
 
-/* --- Skills (Compact) --- */
+/* --- Skills --- */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1rem;
+    position: relative;
+    z-index: 10;
 }
 
 .skill-card {
@@ -281,12 +314,11 @@ section.visible {
     padding: 1.2rem;
     border-radius: 12px;
     border: 1px solid var(--border);
-    transition: var(--transition);
+    transition: border 0.3s;
+    opacity: 0;
 }
 
 .skill-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
     border-color: var(--accent);
 }
 
@@ -314,6 +346,8 @@ section.visible {
     border-radius: 4px;
     font-size: 0.8rem;
     margin: 0 0.3rem 0.3rem 0;
+    opacity: 0;
+    transform: scale(0.8);
 }
 
 /* --- Projects --- */
@@ -322,6 +356,8 @@ section.visible {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 10;
 }
 
 .filter-btn {
@@ -345,6 +381,8 @@ section.visible {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
+    position: relative;
+    z-index: 10;
 }
 
 .project-card {
@@ -352,16 +390,9 @@ section.visible {
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1.5rem;
-    transition: var(--transition);
     position: relative;
     display: flex;
     flex-direction: column;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--accent);
 }
 
 .card-badge {
@@ -379,12 +410,12 @@ section.visible {
 .project-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; margin-top: 0.5rem; color: var(--primary); }
 .project-card p { color: var(--text-muted); font-size: 0.9rem; flex-grow: 1; margin-bottom: 1.5rem; }
 
-.hidden-project-card { display: none; }
-
 /* --- Articles --- */
 .articles-container {
     display: grid;
     gap: 1rem;
+    position: relative;
+    z-index: 10;
 }
 
 .article-card {
@@ -410,12 +441,13 @@ section.visible {
 .article-content p { font-size: 0.9rem; color: var(--text-muted); }
 .article-arrow { margin-left: auto; color: var(--primary); }
 
-/* --- Timeline Experience --- */
+/* --- Timeline --- */
 .timeline {
     position: relative;
     border-left: 2px solid var(--border);
     margin-left: 1rem;
     padding-left: 2rem;
+    z-index: 10;
 }
 
 .timeline-item {
@@ -495,6 +527,8 @@ section.visible {
     padding: 3rem;
     text-align: center;
     box-shadow: var(--shadow-sm);
+    z-index: 10;
+    position: relative;
 }
 
 .contact-item {
@@ -528,6 +562,24 @@ footer {
     margin-top: 4rem;
     color: var(--text-muted);
     font-size: 0.9rem;
+    margin-bottom: 3rem; 
+    z-index: 10;
+    position: relative;
+}
+
+/* --- CLOCK WIDGET (Minimal) --- */
+#clock-widget {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    /* Transparent background, no borders */
+    background: transparent;
+    font-size: 0.85rem;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-muted);
+    opacity: 0.7;
+    z-index: 1001;
+    pointer-events: none; /* Let it be clicked through */
 }
 
 /* --- Mobile --- */
@@ -540,6 +592,7 @@ footer {
     .timeline-dot { left: -1.95rem; width: 12px; height: 12px; top: 0.4rem; }
     .timeline-header { flex-direction: column; gap: 0.2rem; }
     .typing-text { font-size: 2.5rem; }
+    #clock-widget { bottom: 10px; left: 10px; font-size: 0.7rem; }
 }
 
 /* Loading */
