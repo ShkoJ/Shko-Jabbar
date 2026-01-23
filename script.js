@@ -1,6 +1,268 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Typing Animation ---
+    // --- 1. GRID BACKGROUND GENERATION & ANIMATION ---
+    const gridContainer = document.querySelector('.grid-background');
+    if (gridContainer) {
+        const cellSize = 50; // Size in pixels
+        const cols = Math.floor(window.innerWidth / cellSize);
+        const rows = Math.floor(window.innerHeight / cellSize);
+        
+        // Set CSS Grid Layout
+        gridContainer.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+        gridContainer.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+        
+        // Create Cells
+        const totalCells = cols * rows;
+        for (let i = 0; i < totalCells; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('grid-cell');
+            
+            // Interaction: Mouse Enter triggers localized ripple
+            cell.addEventListener('mouseenter', () => {
+                // Determine neighbors (simple logic: current, +1, -1, +cols, -cols)
+                const neighbors = [
+                    cell,
+                    gridContainer.children[i + 1],
+                    gridContainer.children[i - 1],
+                    gridContainer.children[i + cols],
+                    gridContainer.children[i - cols]
+                ].filter(el => el !== undefined); // remove undefined neighbors (edges)
+
+                // Animate Neighbors (Ripple effect)
+                anime({
+                    targets: neighbors,
+                    scale: [
+                        {value: 1.15, easing: 'easeOutSine', duration: 250},
+                        {value: 1, easing: 'easeInOutQuad', duration: 500}
+                    ],
+                    backgroundColor: [
+                        {value: 'rgba(127, 173, 227, 0.1)', duration: 250}, // Accent color low opacity
+                        {value: 'rgba(255, 255, 255, 0)', duration: 500}
+                    ],
+                    delay: anime.stagger(50) // Slight stagger between center and neighbors
+                });
+            });
+            
+            gridContainer.appendChild(cell);
+        }
+    }
+
+    // --- 2. GLOBAL TIMELINE ---
+    let introTimeline = anime.timeline({
+        autoplay: false, 
+        easing: 'easeOutExpo',
+        duration: 1000
+    });
+
+    introTimeline
+    .add({
+        targets: '.site-logo',
+        opacity: [0, 1],
+        translateY: [-20, 0],
+        duration: 800
+    })
+    .add({
+        targets: '.nav-item',
+        opacity: [0, 1],
+        translateY: [-20, 0],
+        delay: anime.stagger(100),
+    }, '-=600')
+    .add({
+        targets: '.intro-content .greeting',
+        opacity: [0, 1],
+        translateY: [20, 0],
+    }, '-=400')
+    .add({
+        targets: '.intro-content .subtitle',
+        opacity: [0, 1],
+        translateY: [20, 0],
+    }, '-=800')
+    .add({
+        targets: '.social-hero a',
+        opacity: [0, 1],
+        translateY: [20, 0],
+        scale: [0.5, 1],
+        delay: anime.stagger(100)
+    }, '-=500')
+    .add({
+        targets: '#clock-widget', 
+        opacity: [0, 1],
+        duration: 800
+    }, '-=800');
+
+    // --- PRELOADER ---
+    const loader = document.querySelector('.loading');
+    if (loader) {
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.remove();
+                introTimeline.play();
+            }, 500);
+        }, 800);
+    } else {
+        introTimeline.play();
+    }
+
+    // --- 3. CLOCK (BAGHDAD TIME) ---
+    function updateClock() {
+        const clockElement = document.getElementById('clock-widget');
+        if (clockElement) {
+            const now = new Date();
+            const options = { 
+                timeZone: 'Asia/Baghdad', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                hour12: true 
+            };
+            const timeString = now.toLocaleTimeString('en-US', options);
+            clockElement.textContent = `My Time: ${timeString}`;
+        }
+    }
+    setInterval(updateClock, 1000);
+    updateClock(); 
+
+    // --- 4. SCROLL TRIGGERS ---
+    // A. SVG LINE DRAWING
+    const titles = document.querySelectorAll('.section-title');
+    const titleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const path = entry.target.querySelector('path');
+                if (path) {
+                    path.style.strokeDasharray = '200';
+                    path.style.strokeDashoffset = '200';
+                    anime({
+                        targets: path,
+                        strokeDashoffset: [anime.setDashoffset, 0],
+                        easing: 'easeInOutSine',
+                        duration: 1500,
+                        direction: 'alternate',
+                        loop: false
+                    });
+                }
+                titleObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    titles.forEach(t => titleObserver.observe(t));
+
+    // B. SECTION REVEAL
+    const sections = document.querySelectorAll('.scroll-section');
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                anime({
+                    targets: entry.target,
+                    opacity: [0, 1],
+                    translateY: [50, 0],
+                    easing: 'easeOutQuad',
+                    duration: 1000
+                });
+                sectionObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 }); 
+    sections.forEach(sec => sectionObserver.observe(sec));
+
+    // C. SKILLS STAGGER
+    const skillsSection = document.querySelector('#skills');
+    const skillCards = document.querySelectorAll('.skill-card');
+    const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                anime({
+                    targets: skillCards,
+                    opacity: [0, 1],
+                    translateY: [50, 0],
+                    delay: anime.stagger(150),
+                    easing: 'easeOutQuad',
+                    complete: function(anim) {
+                        document.querySelectorAll('.skill-card').forEach((card, index) => {
+                            anime({
+                                targets: card.querySelectorAll('.tag-item'),
+                                opacity: [0, 1],
+                                scale: [0.5, 1],
+                                delay: anime.stagger(50),
+                                easing: 'spring(1, 80, 10, 0)'
+                            });
+                        });
+                    }
+                });
+                skillObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    if (skillsSection) skillObserver.observe(skillsSection);
+
+    // D. PROJECT STAGGER
+    const projectGrid = document.querySelector('.project-grid');
+    const projectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                anime({
+                    targets: '.project-card',
+                    scale: [0.8, 1],
+                    opacity: [0, 1],
+                    delay: anime.stagger(100, {grid: [1, 8], from: 'center'}),
+                    easing: 'easeOutElastic(1, .8)',
+                    duration: 800
+                });
+                projectObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    if(projectGrid) projectObserver.observe(projectGrid);
+
+
+    // --- 5. INTERACTIVE ANIMATIONS ---
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            anime({
+                targets: card,
+                scale: 1.03,
+                boxShadow: '0px 15px 30px rgba(0,0,0,0.15)',
+                duration: 800,
+                easing: 'easeOutElastic(1, .6)'
+            });
+        });
+        card.addEventListener('mouseleave', () => {
+            anime({
+                targets: card,
+                scale: 1,
+                boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+                duration: 600,
+                easing: 'easeOutExpo'
+            });
+        });
+    });
+
+    // Cat Dance
+    const catScene = document.getElementById('cat-scene');
+    const catSound = new Audio('maw.mp3');
+    catSound.volume = 0.5;
+
+    if (catScene) {
+        catScene.addEventListener('click', () => {
+            catSound.currentTime = 0;
+            catSound.play().catch(e => console.log('Audio error', e));
+
+            anime({
+                targets: '.cat-image',
+                keyframes: [
+                    {translateY: -10, scaleY: 0.95, duration: 100},
+                    {translateY: -40, scaleY: 1.1, duration: 250},
+                    {rotate: 15, duration: 100},
+                    {rotate: -15, duration: 100},
+                    {rotate: 0, translateY: 0, scaleY: 1, duration: 300}
+                ],
+                easing: 'easeOutQuad',
+            });
+        });
+    }
+
+    // --- 6. TYPING ---
     const typingText = document.querySelector('.typing-text');
     const phrases = ['Software Engineer', 'Data Scientist', 'Consultant'];
     let phraseIndex = 0;
@@ -11,7 +273,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function typeText() {
         if (!typingText) return;
         const currentPhrase = phrases[phraseIndex];
-
         if (isDeleting) {
             typingText.textContent = currentPhrase.substring(0, charIndex - 1);
             charIndex--;
@@ -19,48 +280,36 @@ document.addEventListener('DOMContentLoaded', () => {
             typingText.textContent = currentPhrase.substring(0, charIndex + 1);
             charIndex++;
         }
-
         if (!isDeleting && charIndex === currentPhrase.length) {
             isDeleting = true;
             typingSpeed = 50;
             setTimeout(typeText, 2000);
             return;
         }
-
         if (isDeleting && charIndex === 0) {
             isDeleting = false;
             phraseIndex = (phraseIndex + 1) % phrases.length;
             typingSpeed = 100;
         }
-
         setTimeout(typeText, typingSpeed);
     }
     typeText();
 
-    // ==========================================
-    // --- PROJECT FILTERING & LIMIT LOGIC ---
-    // ==========================================
-    const projectCards = document.querySelectorAll('.project-grid .project-card');
+    // --- 7. UTILITIES ---
     const filterBtns = document.querySelectorAll('.filter-btn');
     const viewMoreBtn = document.getElementById('toggle-projects-btn');
-    
     const LIMIT = 4;
     let currentCategory = 'all';
-    let isExpanded = false; // false = showing 4, true = showing all
+    let isExpanded = false;
 
     function renderProjects() {
         let visibleCount = 0;
         let totalMatches = 0;
-
         projectCards.forEach(card => {
             const category = card.getAttribute('data-category');
-            
-            // Check if card matches current filter
             const matches = (currentCategory === 'all') || (category === currentCategory);
-
             if (matches) {
                 totalMatches++;
-                // Decide if we should show this card based on limit and expansion state
                 if (isExpanded || visibleCount < LIMIT) {
                     card.style.display = 'flex';
                     visibleCount++;
@@ -71,101 +320,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.display = 'none';
             }
         });
-
-        // Handle Button Visibility & Text
-        if (totalMatches > LIMIT) {
-            viewMoreBtn.style.display = 'inline-block';
-            viewMoreBtn.textContent = isExpanded ? 'Show Less' : 'View More';
-        } else {
-            viewMoreBtn.style.display = 'none';
+        if (viewMoreBtn) {
+            if (totalMatches > LIMIT) {
+                viewMoreBtn.style.display = 'inline-block';
+                viewMoreBtn.textContent = isExpanded ? 'Show Less' : 'View More';
+            } else {
+                viewMoreBtn.style.display = 'none';
+            }
         }
     }
 
-    // Event Listener: Filter Buttons
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Update Active State
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
-            // Set new category and reset expansion
             currentCategory = btn.getAttribute('data-filter');
-            isExpanded = false; // Reset to collapsed view on filter change
-            
+            isExpanded = false; 
             renderProjects();
         });
     });
 
-    // Event Listener: View More Button
     if (viewMoreBtn) {
         viewMoreBtn.addEventListener('click', () => {
-            isExpanded = !isExpanded; // Toggle state
+            isExpanded = !isExpanded;
             renderProjects();
         });
     }
-
-    // Initial Render
     renderProjects();
 
-
-    // ==========================================
-    // --- WORK EXPERIENCE EXPANSION ---
-    // ==========================================
-    // Initial Hide Logic for Work
+    // Initial Hide Logic for Work Experience
     const allWorkItems = document.querySelectorAll('.timeline-item');
     allWorkItems.forEach((item, index) => {
         if (index >= 5) item.style.display = 'none';
     });
-
-    // --- Scroll Animation ---
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    sections.forEach(sec => observer.observe(sec));
-
-    // --- Loading Remover ---
-    const loader = document.querySelector('.loading');
-    if (loader) {
-        setTimeout(() => {
-            loader.style.opacity = '0';
-            setTimeout(() => loader.remove(), 500);
-        }, 500);
-    }
-
-    // --- Cat Interaction ---
-    const catScene = document.getElementById('cat-scene');
-    const catSound = new Audio('maw.mp3');
-    catSound.volume = 0.5;
-
-    if (catScene) {
-        catScene.addEventListener('click', () => {
-            catScene.style.transform = 'scale(0.9)';
-            catSound.currentTime = 0;
-            catSound.play().catch(e => console.log('Audio error', e));
-            setTimeout(() => catScene.style.transform = 'scale(1)', 150);
-        });
-    }
 });
 
-// Global function for Work Toggle (called by onclick in HTML)
 function toggleWork() {
     const allWorkItems = document.querySelectorAll('.timeline-item');
     const btn = document.getElementById('show-more-work');
-    
-    // Check if the 6th item (index 5) is hidden
     const isHidden = allWorkItems[5].style.display === 'none';
 
     if (isHidden) {
         allWorkItems.forEach((item, index) => {
             if (index >= 5) {
                 item.style.display = 'block';
-                item.classList.add('visible');
+                anime({
+                    targets: item,
+                    opacity: [0, 1],
+                    translateY: [20, 0],
+                    easing: 'easeOutQuad',
+                    duration: 500
+                });
             }
         });
         btn.textContent = 'Show Less';
