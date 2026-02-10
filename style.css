@@ -397,6 +397,14 @@ section {
 }
 
 /* --- Skills --- */
+/* NEW FLEX HEADER FOR SKILLS */
+.skills-header {
+    display: flex;
+    align-items: baseline;
+    gap: 30px;
+    margin-bottom: 1rem;
+}
+
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -781,6 +789,12 @@ footer {
         left: 10px;
         font-size: 0.7rem;
     }
+    
+    .skills-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
 }
 
 /* Loading */
@@ -812,4 +826,166 @@ footer {
     to {
         transform: rotate(360deg);
     }
+}
+/* =========================================
+   NEW ANIMATIONS INTEGRATION
+   ========================================= */
+
+/* --- 1. MINI SKILLS CUBE (Updated) --- */
+.mini-cube-container {
+    perspective: 800px;
+    height: 40px;
+    width: 40px;
+    /* Moved down 5px as requested */
+    margin-top: 5px; 
+}
+
+.mini-cube-container .box-card {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+    cursor: pointer;
+    animation: rotate3d 12s infinite linear;
+}
+
+/* Pause rotation on hover so user can read */
+.mini-cube-container .box-card:hover {
+    animation-play-state: paused;
+}
+
+.mini-cube-container .face {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.5rem;
+    font-weight: bold;
+    backface-visibility: visible;
+    border-radius: 4px;
+    background: var(--primary); /* Brand Primary */
+    color: white;
+    border: 1px solid var(--accent); /* Brand Accent */
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px rgba(127, 173, 227, 0.3);
+}
+
+/* Face positioning (Half of 40px = 20px) */
+.mini-cube-container .front  { transform: translateZ(20px); }
+.mini-cube-container .back   { transform: translateZ(-20px) rotateY(180deg); }
+.mini-cube-container .right  { transform: translateX(20px) rotateY(90deg); }
+.mini-cube-container .left   { transform: translateX(-20px) rotateY(-90deg); }
+.mini-cube-container .top    { transform: translateY(-20px) rotateX(90deg); }
+.mini-cube-container .bottom { transform: translateY(20px) rotateX(-90deg); }
+
+@keyframes rotate3d {
+    0%   { transform: rotateX(0) rotateY(0); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+
+/* --- 2. HERO SOCIAL ICONS (Flip & Fill) --- */
+.social-hero {
+    /* Resetting generic styles to fit the new list */
+    opacity: 1 !important; /* Managed by list items now */
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.social-list {
+    display: flex;
+    gap: 15px; /* Replaces margin: 0 10px */
+    padding: 0;
+}
+
+.social-list li {
+    list-style: none;
+}
+
+.social-list li a {
+    width: 60px; /* Reduced slightly to fit mobile better */
+    height: 60px;
+    background-color: #fff;
+    text-align: center;
+    line-height: 60px;
+    font-size: 25px;
+    display: block;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid var(--primary); /* Matched to your theme */
+    z-index: 1;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.social-list li a .icon {
+    position: relative;
+    color: var(--primary);
+    transition: .5s;
+    z-index: 3;
+    line-height: 60px; /* Ensure vertical center */
+}
+
+.social-list li a:hover .icon {
+    color: #fff;
+    transform: rotateY(360deg);
+}
+
+.social-list li a:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--accent); /* Default hover color */
+    transition: .5s;
+    z-index: 2;
+}
+
+.social-list li a:hover:before {
+    top: 0;
+}
+
+/* Specific Brand Colors for the hover fill */
+/* Github */
+.social-list li:nth-child(1) a:before {
+    background: #333; 
+}
+/* LinkedIn */
+.social-list li:nth-child(2) a:before {
+    background: #0077b5; 
+}
+/* Medium */
+.social-list li:nth-child(3) a:before {
+    background: #000; 
+}
+
+
+/* --- 3. CONTACT IMAGE (Aperture Effect) --- */
+/* Overwriting existing .cat-image styles */
+.cat-image {
+    --s: 150px;     /* Increased size */
+    --b: 6px;       /* Border thickness */
+    --g: 10px;      /* Gap */
+    --c: var(--accent); /* Your theme color */
+    
+    width: var(--s);
+    aspect-ratio: 1;
+    border-radius: 50%; /* Keep it round initially */
+    outline: calc(var(--s)/2) solid rgba(0, 24, 84, 0.1); /* Using your primary color transparent */
+    outline-offset: calc(var(--s)/-2);
+    cursor: pointer;
+    transition: .4s ease-out;
+    border: none !important; /* Remove old border */
+}
+
+.cat-image:hover {
+    outline: var(--b) solid var(--c);
+    outline-offset: var(--g);
+    transform: scale(1.05); /* Slight grow */
 }
