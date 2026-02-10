@@ -108,13 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const cells = gridContainer.children;
             if (!cells[index]) return; // Safety
 
-            // We need to clear not just the center, but the area around where the center WAS.
-            // Since we don't store the previous neighbors specifically, 
-            // the safest efficient way is to recalculate the area of influence 
-            // or just clear the specific classes if we know them.
-            // BUT, since 'applyHighlights' clears classes before adding, 
-            // and we track 'previousIndex', we can just clear the zone around 'previousIndex'.
-
             cells[index].classList.remove('active');
 
             const neighbors = getNeighbors(index, 2);
@@ -155,8 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
             opacity: [0, 1],
             translateY: [20, 0],
         }, '-=800')
+        // *** UPDATED TARGET FOR NEW SOCIAL ICONS STRUCTURE ***
         .add({
-            targets: '.social-hero a',
+            targets: '.social-list li', 
             opacity: [0, 1],
             translateY: [20, 0],
             scale: [0.5, 1],
