@@ -827,6 +827,7 @@ footer {
         transform: rotate(360deg);
     }
 }
+
 /* =========================================
    NEW ANIMATIONS INTEGRATION
    ========================================= */
@@ -885,7 +886,6 @@ footer {
     0%   { transform: rotateX(0) rotateY(0); }
     100% { transform: rotateX(360deg) rotateY(360deg); }
 }
-
 
 /* --- 2. HERO SOCIAL ICONS (Flip & Fill) --- */
 .social-hero {
@@ -965,7 +965,6 @@ footer {
     background: #000; 
 }
 
-
 /* --- 3. CONTACT IMAGE (Aperture Effect) --- */
 /* Overwriting existing .cat-image styles */
 .cat-image {
@@ -988,15 +987,4 @@ footer {
     outline: var(--b) solid var(--c);
     outline-offset: var(--g);
     transform: scale(1.05); /* Slight grow */
-}
-
-/* =========================================
-   FOCUS MODE (INSPEBOT) - IN-PLACE
-   ========================================= */
-body.focus-active {
-    overflow: hidden; 
-}
-
-#inspobot-wrapper.focus-mode {
-    z-index: 100000 !important;
 }
