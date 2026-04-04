@@ -451,19 +451,13 @@
                 </svg>
             </h2>
 
-            <div class="about-card" style="display: block; padding: 1.5rem; text-align: center;">
-                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Take a moment to relax with some AI-generated inspiration from Inspobot.</p>
-                
-                <button id="enter-focus-btn" class="btn btn-primary" style="margin-bottom: 1.5rem;">
-                    <i class="fas fa-expand"></i> Enter Focus Mode
-                </button>
-                
-                <div id="focus-overlay" style="display: none; opacity: 0;"></div>
+            <div style="position: relative;">
+                <div id="focus-overlay" style="display: none; opacity: 0; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000000; z-index: 99999; cursor: pointer;"></div>
 
-                <div id="inspobot-wrapper" style="width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);">
-                    <button id="exit-focus-btn" class="btn" style="display: none; position: fixed; top: 20px; right: 20px; z-index: 100001; background: white; color: black; border-radius: 50%; width: 45px; height: 45px; padding: 0; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-                        <i class="fas fa-times" style="margin: 0; font-size: 1.2rem;"></i>
-                    </button>
+                <div id="inspobot-wrapper" style="position: relative; z-index: 10; width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--bg-card); transition: z-index 0.3s;">
+                    
+                    <div id="iframe-click-catcher" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20; cursor: pointer; background: transparent;"></div>
+                    
                     <iframe id="inspobot-frame" src="https://inspirobot.me/mindfulnessmode" width="100%" height="450" style="border: none; display: block;" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
