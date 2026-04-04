@@ -426,38 +426,39 @@ document.addEventListener('DOMContentLoaded', () => {
         if (index >= 5) item.style.display = 'none';
     });
 
-    // --- 8. FOCUS MODE LOGIC ---
-    const enterFocusBtn = document.getElementById('enter-focus-btn');
-    const exitFocusBtn = document.getElementById('exit-focus-btn');
+    // --- 8. IN-PLACE FOCUS MODE LOGIC ---
+    const clickCatcher = document.getElementById('iframe-click-catcher');
     const inspobotWrapper = document.getElementById('inspobot-wrapper');
     const focusOverlay = document.getElementById('focus-overlay');
 
-    if (enterFocusBtn) {
-        enterFocusBtn.addEventListener('click', () => {
+    if (clickCatcher) {
+        clickCatcher.addEventListener('click', () => {
             // Activate classes
             document.body.classList.add('focus-active');
             inspobotWrapper.classList.add('focus-mode');
             
-            // Show elements
+            // Show blackout overlay
             focusOverlay.style.display = 'block';
-            exitFocusBtn.style.display = 'flex';
-            
-            // Smooth fade in using anime.js
             anime({
                 targets: focusOverlay,
                 opacity: [0, 1],
                 duration: 400,
                 easing: 'easeOutQuad'
             });
+
+            // Hide the click catcher so the user can interact with the bot
+            clickCatcher.style.display = 'none';
         });
     }
 
     function closeFocusMode() {
         document.body.classList.remove('focus-active');
         inspobotWrapper.classList.remove('focus-mode');
-        exitFocusBtn.style.display = 'none';
         
-        // Smooth fade out
+        // Show click catcher again to intercept the next click
+        clickCatcher.style.display = 'block';
+        
+        // Fade out overlay
         anime({
             targets: focusOverlay,
             opacity: [1, 0],
@@ -469,8 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Close when X is clicked, overlay is clicked, or Escape key is pressed
-    if (exitFocusBtn) exitFocusBtn.addEventListener('click', closeFocusMode);
+    // Close when the dark background is clicked, or Escape key is pressed
     if (focusOverlay) focusOverlay.addEventListener('click', closeFocusMode);
     
     document.addEventListener('keydown', (e) => {
