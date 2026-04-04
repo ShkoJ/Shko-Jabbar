@@ -425,6 +425,60 @@ document.addEventListener('DOMContentLoaded', () => {
     allWorkItems.forEach((item, index) => {
         if (index >= 5) item.style.display = 'none';
     });
+
+    // --- 8. FOCUS MODE LOGIC ---
+    const enterFocusBtn = document.getElementById('enter-focus-btn');
+    const exitFocusBtn = document.getElementById('exit-focus-btn');
+    const inspobotWrapper = document.getElementById('inspobot-wrapper');
+    const focusOverlay = document.getElementById('focus-overlay');
+
+    if (enterFocusBtn) {
+        enterFocusBtn.addEventListener('click', () => {
+            // Activate classes
+            document.body.classList.add('focus-active');
+            inspobotWrapper.classList.add('focus-mode');
+            
+            // Show elements
+            focusOverlay.style.display = 'block';
+            exitFocusBtn.style.display = 'flex';
+            
+            // Smooth fade in using anime.js
+            anime({
+                targets: focusOverlay,
+                opacity: [0, 1],
+                duration: 400,
+                easing: 'easeOutQuad'
+            });
+        });
+    }
+
+    function closeFocusMode() {
+        document.body.classList.remove('focus-active');
+        inspobotWrapper.classList.remove('focus-mode');
+        exitFocusBtn.style.display = 'none';
+        
+        // Smooth fade out
+        anime({
+            targets: focusOverlay,
+            opacity: [1, 0],
+            duration: 300,
+            easing: 'easeInQuad',
+            complete: () => {
+                focusOverlay.style.display = 'none';
+            }
+        });
+    }
+
+    // Close when X is clicked, overlay is clicked, or Escape key is pressed
+    if (exitFocusBtn) exitFocusBtn.addEventListener('click', closeFocusMode);
+    if (focusOverlay) focusOverlay.addEventListener('click', closeFocusMode);
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.body.classList.contains('focus-active')) {
+            closeFocusMode();
+        }
+    });
+
 });
 
 function toggleWork() {
