@@ -991,36 +991,12 @@ footer {
 }
 
 /* =========================================
-   FOCUS MODE (INSPEBOT)
+   FOCUS MODE (INSPEBOT) - IN-PLACE
    ========================================= */
 body.focus-active {
-    overflow: hidden; /* Stops the user from scrolling the page behind the modal */
-}
-
-#focus-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.85); /* Dark cinematic background */
-    backdrop-filter: blur(8px); /* Blurs your website in the background */
-    z-index: 99999;
-    cursor: pointer; /* Lets the user know they can click to close */
+    overflow: hidden; 
 }
 
 #inspobot-wrapper.focus-mode {
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 90vw !important;
-    height: 85vh !important;
-    z-index: 100000;
-    border: none !important;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-
-#inspobot-wrapper.focus-mode iframe {
-    height: 100% !important; /* Forces iframe to fill the screen */
+    z-index: 100000 !important;
 }
